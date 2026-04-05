@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { AdminLayout } from "@/components/admin-layout";
-import { createPost, type Category, type Tag } from "@/lib/supabase";
+import { createPost, type Category, type Tag, type PostStatus } from "@/lib/supabase";
 
 type Props = {
   categories: Category[];
@@ -43,7 +43,7 @@ export function NewPostClient({ categories, tags }: Props) {
     excerpt: "",
     content: "",
     featured_image_url: "",
-    status: "draft" as const,
+    status: "draft" as PostStatus,
     featured: false,
     category_id: "",
     author_name: "Ali Fuat Aslan",

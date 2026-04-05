@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
     openGraph: {
       type: "website",
       title: category.seo_title || category.name,
-      description: category.seo_description || category.description,
+      description: category.seo_description || category.description || undefined,
     },
   };
 }
@@ -58,8 +58,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         {posts.length === 0 ? (
           <p className="text-center text-slate-500">Bu kategoride henuuz yazı bulunmamadi.</p>
         ) : (
-          <PostCard key={post.slug} post={post} />
-        ))}
+          posts.map((post) => <PostCard key={post.slug} post={post} />)
+        )}
       </div>
     </section>
   );

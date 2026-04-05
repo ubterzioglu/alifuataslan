@@ -12,6 +12,8 @@ export type Category = {
   name: string;
   slug: string;
   description: string | null;
+  seo_title: string | null;
+  seo_description: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -268,6 +270,11 @@ export async function updateTag(id: number, tag: Partial<Omit<Tag, "id" | "creat
 
   if (error) throw error;
   return data;
+}
+
+export async function deleteTag(id: number): Promise<void> {
+  const { error } = await supabase.from("tags").delete().eq("id", id);
+  if (error) throw error;
 }
 
 export type ContentTodoStatus = "pending" | "in_progress" | "completed" | "cancelled";

@@ -21,6 +21,8 @@ export function CategoryFormClient({ category }: Props) {
     name: category?.name || "",
     slug: category?.slug || "",
     description: category?.description || "",
+    seo_title: category?.seo_title || "",
+    seo_description: category?.seo_description || "",
   });
 
   const handleNameChange = (name: string) => {
@@ -57,12 +59,16 @@ export function CategoryFormClient({ category }: Props) {
           name: formData.name,
           slug: formData.slug,
           description: formData.description || null,
+          seo_title: formData.seo_title || null,
+          seo_description: formData.seo_description || null,
         });
       } else {
         await createCategory({
           name: formData.name,
           slug: formData.slug,
           description: formData.description || null,
+          seo_title: formData.seo_title || null,
+          seo_description: formData.seo_description || null,
         });
       }
 
@@ -116,6 +122,26 @@ export function CategoryFormClient({ category }: Props) {
           <textarea
             value={formData.description}
             onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+            rows={3}
+            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">SEO Basligi</label>
+          <input
+            type="text"
+            value={formData.seo_title}
+            onChange={(e) => setFormData((prev) => ({ ...prev, seo_title: e.target.value }))}
+            className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label className="mb-1 block text-sm font-medium text-slate-700">SEO Aciklamasi</label>
+          <textarea
+            value={formData.seo_description}
+            onChange={(e) => setFormData((prev) => ({ ...prev, seo_description: e.target.value }))}
             rows={3}
             className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
           />
