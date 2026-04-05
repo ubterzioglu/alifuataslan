@@ -1,0 +1,246 @@
+.page {
+  background: #f7f8fa;
+  color: #1f2937;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  margin: 0;
+  min-height: 100vh;
+  padding: 24px 12px;
+}
+
+.container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin: 0 auto;
+  max-width: 1120px;
+  overflow: hidden;
+}
+
+.header {
+  background: #0f2747;
+  color: #fff;
+  padding: 18px 20px;
+}
+
+.header h1 {
+  font-size: 22px;
+  margin: 0 0 6px;
+}
+
+.header p {
+  color: #d7dee8;
+  font-size: 12px;
+  margin: 0;
+}
+
+.section {
+  border-top: 1px solid #e5e7eb;
+  padding: 16px 20px;
+}
+
+.section h2 {
+  color: #0f2747;
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+.tableWrap {
+  overflow-x: auto;
+}
+
+.tableWrap table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.tableWrap th,
+.tableWrap td {
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 12px;
+  padding: 8px 6px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.tableWrap th {
+  background: #f9fafb;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.wSection {
+  min-width: 170px;
+}
+
+.wTask {
+  min-width: 280px;
+}
+
+.wStatus {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+.wOwner {
+  min-width: 130px;
+  white-space: nowrap;
+}
+
+.wNote {
+  min-width: 220px;
+}
+
+.wActions {
+  white-space: nowrap;
+  width: 200px;
+}
+
+.statusPill {
+  border-radius: 999px;
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  white-space: nowrap;
+}
+
+.statusDone {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.statusRevision {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.statusHold {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.actionBtn {
+  align-items: center;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 12px;
+  font-weight: 700;
+  height: 28px;
+  justify-content: center;
+  margin-right: 6px;
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+.actionBtn:hover {
+  background: #f3f4f6;
+}
+
+.actionEdit {
+  color: #0f2747;
+}
+
+.actionDelete {
+  background: #fff7f7;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.actionSave {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #166534;
+}
+
+.actionCancel {
+  color: #374151;
+}
+
+.cellInput,
+.cellSelect {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 12px;
+  padding: 4px 6px;
+  width: 100%;
+}
+
+.cellInput:focus,
+.cellSelect:focus {
+  border-color: #0f2747;
+  outline: 2px solid rgba(15, 39, 71, 0.2);
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.error {
+  color: #b91c1c;
+  font-size: 11px;
+  margin-top: 8px;
+}
+
+.sourceNote {
+  color: #52627a;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 8px;
+}
+
+.accordion {
+  background: #f9fbff;
+  border: 1px solid #d9e0ea;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.accordion summary {
+  background: #f2f7ff;
+  color: #0f2747;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  list-style: none;
+  padding: 10px 12px;
+}
+
+.accordion summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion summary::after {
+  content: "+";
+  float: right;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.accordion[open] summary::after {
+  content: "-";
+}
+
+.accordionContent {
+  background: #fff;
+  color: #1f2937;
+  font-size: 12px;
+  line-height: 1.6;
+  padding: 10px 12px 12px;
+}
+
+.rawMessage {
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+  white-space: pre-wrap;
+}

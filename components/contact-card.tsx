@@ -1,6 +1,8 @@
-import Link from "next/link";
 import { siteConfig } from "@/lib/site";
-import { Mail, ExternalLink, MessageCircle, Camera } from "lucide-react";
+import { InstagramIcon, LinkedInIcon, MailIcon, XIcon } from "@/components/social-icons";
+
+const iconButtonClass =
+  "focus-ring inline-flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-navy)] text-white transition hover:opacity-90 md:h-16 md:w-16";
 
 export function ContactCard() {
   return (
@@ -11,48 +13,30 @@ export function ContactCard() {
           İş birliği, konuşma daveti ve profesyonel iletişim talepleri için aşağıdaki kanallardan ulaşabilirsiniz.
         </p>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2">
-          <a
-            href={`mailto:${siteConfig.email}`}
-            className="focus-ring flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-[var(--color-gold)]/60 hover:bg-[#fcfbf8]"
-          >
-            <Mail className="h-7 w-7 text-[var(--color-navy)]" />
-            <div>
-              <p className="font-semibold text-[var(--color-navy)]">E-posta</p>
-              <p className="text-sm text-slate-500">{siteConfig.email}</p>
-            </div>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4 md:gap-5">
+          <a href={`mailto:${siteConfig.email}`} className={iconButtonClass} aria-label="E-posta" title="E-posta">
+            <MailIcon className="h-7 w-7" />
           </a>
+
           <a
             href={siteConfig.links.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="focus-ring flex items-center gap-4 rounded-xl border border-slate-200 bg-white p-5 transition hover:border-[var(--color-gold)]/60 hover:bg-[#fcfbf8]"
+            className={iconButtonClass}
+            aria-label="LinkedIn"
+            title="LinkedIn"
           >
-            <ExternalLink className="h-7 w-7 text-[var(--color-navy)]" />
-            <div>
-              <p className="font-semibold text-[var(--color-navy)]">LinkedIn</p>
-              <p className="text-sm text-slate-500">Profili görüntüle</p>
-            </div>
+            <LinkedInIcon className="h-7 w-7" />
           </a>
-          <div className="flex items-center gap-4 rounded-xl border border-dashed border-slate-300 p-5">
-            <MessageCircle className="h-7 w-7 text-slate-400" />
-            <div>
-              <p className="font-semibold text-slate-500">X (Twitter)</p>
-              <p className="text-sm text-slate-400">Yakın zamanda eklenecek.</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 rounded-xl border border-dashed border-slate-300 p-5">
-            <Camera className="h-7 w-7 text-slate-400" />
-            <div>
-              <p className="font-semibold text-slate-500">Instagram</p>
-              <p className="text-sm text-slate-400">Yakın zamanda eklenecek.</p>
-            </div>
-          </div>
-        </div>
 
-        <Link href="/" className="focus-ring mt-7 inline-flex text-sm font-semibold text-[var(--color-navy)] underline-offset-4 hover:underline">
-          Ana sayfaya dön
-        </Link>
+          <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-navy)] text-white/90 md:h-16 md:w-16" aria-label="X (yakında)" title="X (yakında)">
+            <XIcon className="h-7 w-7" />
+          </span>
+
+          <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[var(--color-navy)] text-white/90 md:h-16 md:w-16" aria-label="Instagram (yakında)" title="Instagram (yakında)">
+            <InstagramIcon className="h-7 w-7" />
+          </span>
+        </div>
       </div>
     </section>
   );
