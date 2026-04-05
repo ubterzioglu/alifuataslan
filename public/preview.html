@@ -200,17 +200,17 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
     async function loadTodos() {
       try {
         const response = await fetch(
-          ${SUPABASE_URL}/rest/v1/todo_items?select=section,task,status,owner,note,sort_order&order=sort_order.asc,
+          `${SUPABASE_URL}/rest/v1/todo_items?select=section,task,status,owner,note,sort_order&order=sort_order.asc`,
           {
             headers: {
               apikey: SUPABASE_ANON_KEY,
-              Authorization: Bearer 
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`
             }
           }
         );
 
         if (!response.ok) {
-          throw new Error(HTTP );
+          throw new Error(`HTTP ${response.status}`);
         }
 
         const rows = await response.json();
@@ -222,23 +222,23 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
         }
 
         bodyEl.innerHTML = rows
-          .map((item) => 
+          .map((item) => `
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td><span class="status "></span></td>
-              <td></td>
-              <td></td>
+              <td>${checkboxFor(item.status)}</td>
+              <td>${escapeHtml(item.section || "-")}</td>
+              <td>${escapeHtml(item.task)}</td>
+              <td><span class="status ${statusClass(item.status)}">${escapeHtml(item.status)}</span></td>
+              <td>${escapeHtml(item.owner || "UBT")}</td>
+              <td>${escapeHtml(item.note || "-")}</td>
             </tr>
-          )
+          `)
           .join("");
 
-        statusEl.textContent = Supabase bağlantısı başarılı.  kayıt yüklendi.;
+        statusEl.textContent = `Supabase bağlantısı başarılı. ${rows.length} kayıt yüklendi.`;
       } catch (error) {
         bodyEl.innerHTML = '<tr><td colspan="6">Veri yüklenemedi.</td></tr>';
         statusEl.className = "error";
-        statusEl.textContent = Supabase bağlantısı başarısız: ;
+        statusEl.textContent = `Supabase bağlantısı başarısız: ${error.message}`;
       }
     }
 
