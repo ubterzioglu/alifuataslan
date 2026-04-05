@@ -19,7 +19,7 @@ export function PostCard({ post, compact = false }: PostCardProps) {
       <p className="mt-3 text-sm leading-6 text-[var(--color-slate)]">{post.excerpt}</p>
       <div className="mt-4 flex items-center gap-3 text-xs text-slate-500">
         <time dateTime={post.published_at || post.created_at}>{formatDate(post.published_at || post.created_at)}</time>
-        <span aria-hidden="true">â€¢</span>
+        <span aria-hidden="true">{"\u2022"}</span>
         <span>{post.reading_time || "5 dk"}</span>
       </div>
       {!compact ? (
@@ -27,7 +27,7 @@ export function PostCard({ post, compact = false }: PostCardProps) {
           href={`/yazilar/${post.slug}`}
           className="focus-ring mt-5 inline-flex text-sm font-semibold text-[var(--color-navy)] underline-offset-4 hover:underline"
         >
-          Devamini Oku
+          {"Devam\u0131n\u0131 Oku"}
         </Link>
       ) : null}
     </article>
