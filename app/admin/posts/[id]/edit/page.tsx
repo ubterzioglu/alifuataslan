@@ -6,7 +6,7 @@ import { getPostById, getCategories, getTags, getAllPosts } from "@/lib/supabase
 export const dynamic = "force-dynamic";
 
 type EditPostPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 export async function generateStaticParams() {
@@ -15,7 +15,7 @@ export async function generateStaticParams() {
 }
 
 export default async function EditPostPage({ params }: EditPostPageProps) {
-  const { id } = params;
+  const { id } = await params;
   const post = await getPostById(Number(id));
 
   if (!post) {
