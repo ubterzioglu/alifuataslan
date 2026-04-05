@@ -117,6 +117,21 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   };
 }
 
+export async function getPostById(id: number): Promise<Post | null> {
+  const { data, error } = await supabase
+    .from("posts")
+    .select("*, categories(*), tags:post_tags(tags(*))")
+    .eq("id", id)
+    .single();
+
+  if (error) return null;
+
+  return {
+    ...data,
+    tags: data.tags?.map((t: { tags: Tag }) => t.tags).filter(Boolean) || [],
+  };
+}
+
 export async function getPostsByCategory(categorySlug: string): Promise<Post[]> {
   const { data, error } = await supabase
     .from("posts")

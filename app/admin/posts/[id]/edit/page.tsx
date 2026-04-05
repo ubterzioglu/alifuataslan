@@ -1,12 +1,12 @@
 import { notFound } from "next/navigation";
 import { AdminLayout } from "@/components/admin-layout";
 import { EditPostClient } from "@/components/admin-edit-post-client";
-import { getPostBySlug, getCategories, getTags, getAllPosts } from "@/lib/supabase";
+import { getPostById, getCategories, getTags, getAllPosts } from "@/lib/supabase";
 
 export const dynamic = "force-dynamic";
 
 type EditPostPageProps = {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 };
 
 export async function generateStaticParams() {
@@ -15,8 +15,8 @@ export async function generateStaticParams() {
 }
 
 export default async function EditPostPage({ params }: EditPostPageProps) {
-  const { id } = await params;
-  const post = await getPostBySlug(id);
+  const { id } = params;
+  const post = await getPostById(Number(id));
   
   if (!post) {
     notFound();

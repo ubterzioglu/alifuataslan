@@ -1,8 +1,8 @@
 export const siteConfig = {
-  name: "Finansal Gunluk",
-  title: "Finansal Gunluk | Piyasa Analizleri, Finans Tarihi ve Yatirim Egitimleri",
+  name: "Finansal Günlük",
+  title: "Finansal Günlük | Piyasa Analizleri, Finans Tarihi ve Yatırım Eğitimleri",
   description:
-    "Ali Fuat Aslan'in borsa, finans tarihi, bilanco analizi ve yatirim psikolojisi odakli egitsel icerik platformu.",
+    "Ali Fuat Aslan'ın borsa, finans tarihi, bilanço analizi ve yatırım psikolojisi odaklı eğitsel içerik platformu.",
   url: "https://www.alifuataslan.com",
   email: "aslanalifuat1@gmail.com",
   links: {
@@ -12,8 +12,8 @@ export const siteConfig = {
 
 export const navItems = [
   { label: "Ana Sayfa", href: "/" },
-  { label: "Hakkimda", href: "/hakkimda" },
-  { label: "Iletisim", href: "/iletisim" },
-  { label: "Yasal Uyari", href: "/yasal-uyari" },
-  { label: "Egitimler", href: "/egitimler" },
+  { label: "Hakkımda", href: "/hakkimda" },
+  { label: "İletişim", href: "/iletisim" },
+  { label: "Yasal Uyarı", href: "/yasal-uyari" },
+  { label: "Eğitimler", href: "/egitimler" },
 ] as const;

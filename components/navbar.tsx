@@ -26,12 +26,12 @@ export function Navbar() {
             Beni oku Ali Fuat!
           </Link>
           <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
-            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Gunluk</span>
+            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Günlük</span>
             <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
           </Link>
         </div>
 
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Ana menü">
+        <nav className="hidden items-center gap-1 md:flex" aria-label="Ana Menü">
           {navItems.map((item) => {
             const active = pathname === item.href;
             return (
@@ -56,14 +56,14 @@ export function Navbar() {
           className="focus-ring inline-flex rounded-md border border-slate-500 px-3 py-2 text-sm text-white md:hidden"
           aria-expanded={open}
           aria-controls="mobile-nav"
-          aria-label="Menüyü ac veya kapat"
+          aria-label="Menüyü aç veya kapat"
         >
           Menu
         </button>
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label="Mobil menü">
+        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label="Mobil Menü">
           <ul className="space-y-2">
             {navItems.map((item) => {
               const active = pathname === item.href;

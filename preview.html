@@ -1,6 +1,7 @@
 ﻿<!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finansal Günlük - Todo Durumu</title>
@@ -16,7 +17,7 @@
     th, td { border-bottom: 1px solid #e5e7eb; padding: 8px 6px; text-align: left; vertical-align: top; font-size: 12px; }
     th { background: #f9fafb; font-size: 11px; text-transform: uppercase; letter-spacing: .02em; }
 
-    .status-pill { font-weight: 700; padding: 3px 8px; border-radius: 999px; display: inline-block; font-size: 11px; }
+    .status-pill { font-weight: 700; padding: 3px 8px; border-radius: 999px; display: inline-block; font-size: 11px; white-space: nowrap; }
     .status-done { background: #dcfce7; color: #166534; }
     .status-revision { background: #fee2e2; color: #991b1b; }
     .status-hold { background: #fef3c7; color: #92400e; }
@@ -66,6 +67,8 @@
     .w-section { min-width: 170px; }
     .w-task { min-width: 280px; }
     .w-note { min-width: 220px; }
+    .w-status { min-width: 90px; }
+    .w-owner { min-width: 100px; }
     .w-actions { width: 86px; white-space: nowrap; }
   </style>
 </head>
@@ -83,8 +86,8 @@
           <tr>
             <th class="w-section">Bölüm</th>
             <th class="w-task">İstenen</th>
-            <th>Durum</th>
-            <th>Kim yapacak ?</th>
+            <th class="w-status">Durum</th>
+            <th class="w-owner">Kim yapacak ?</th>
             <th class="w-note">Not</th>
             <th class="w-actions">İşlem</th>
           </tr>
@@ -192,8 +195,8 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
           <td>${escapeHtml(item.owner || "UBT")}</td>
           <td>${escapeHtml(item.note || "-")}</td>
           <td>
-            <button class="action-btn" title="Düzenle" onclick="startEdit(${item.id})">✏</button>
-            <button class="action-btn" title="Sil" onclick="deleteRow(${item.id})">🗑</button>
+            <button class="action-btn" title="Düzenle" onclick="startEdit(${item.id})"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg></button>
+            <button class="action-btn" title="Sil" onclick="deleteRow(${item.id})"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></button>
           </td>
         </tr>
       `;
@@ -219,8 +222,8 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
           <td><select class="cell-select" id="owner-${item.id}">${ownerOptions}</select></td>
           <td><input class="cell-input" id="note-${item.id}" value="${escapeHtml(item.note || "")}" /></td>
           <td>
-            <button class="action-btn" title="Kaydet" onclick="saveEdit(${item.id})">💾</button>
-            <button class="action-btn" title="İptal" onclick="cancelEdit(${item.id})">✖</button>
+            <button class="action-btn" title="Kaydet" onclick="saveEdit(${item.id})"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 -12 18 7 12"></polyline></svg></button>
+            <button class="action-btn" title="İptal" onclick="cancelEdit(${item.id})"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
           </td>
         </tr>
       `;
