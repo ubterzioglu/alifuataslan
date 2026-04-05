@@ -19,8 +19,8 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
 
   if (!category) {
     return {
-      title: "Kategori Bulunamadi",
-      description: "Istenen kategori bulunamadi.",
+      title: "Kategori Bulunamadı",
+      description: "İstenen kategori bulunamadı.",
     };
   }
 
@@ -52,11 +52,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
     <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
       <SectionHeading
         title={category.name}
-        description={category.description || "Bu kategoride yazilar yer okuyurlar egitim icerikler."}
+        description={category.description || "Bu kategoride eğitim odaklı yazılar yer alır."}
       />
       <div className="grid gap-5">
         {posts.length === 0 ? (
-          <p className="text-center text-slate-500">Bu kategoride henuuz yaz1 bulunmamadi.</p>
+          <p className="text-center text-slate-500">Bu kategoride henüz yazı bulunamadı.</p>
         ) : (
           posts.map((post) => <PostCard key={post.slug} post={post} />)
         )}

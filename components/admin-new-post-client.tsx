@@ -123,10 +123,10 @@ export function NewPostClient({ categories, tags }: Props) {
     <AdminLayout>
       <div className="mb-6 flex items-center gap-4">
         <Link href="/admin/posts" className="text-slate-500 hover:text-[var(--color-navy)]">
-          Yazilar
+          Yazılar
         </Link>
         <span className="text-slate-300">/</span>
-        <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">Yeni Yazi</h1>
+        <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">Yeni Yazı</h1>
       </div>
 
       {error && (
@@ -147,7 +147,7 @@ export function NewPostClient({ categories, tags }: Props) {
                   onChange={(e) => handleTitleChange(e.target.value)}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Yazi basligi"
+                  placeholder="Yazı basligi"
                 />
               </div>
 
@@ -159,7 +159,7 @@ export function NewPostClient({ categories, tags }: Props) {
                   onChange={(e) => setFormData((prev) => ({ ...prev, slug: e.target.value }))}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="yazi-slug"
+                  placeholder="Yazı-slug"
                 />
               </div>
 
@@ -175,14 +175,14 @@ export function NewPostClient({ categories, tags }: Props) {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">Icerik *</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">İçerik *</label>
                 <textarea
                   value={formData.content}
                   onChange={(e) => handleContentChange(e.target.value)}
                   rows={12}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 font-mono text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Yazi icerigi..."
+                  placeholder="Yazı icerigi..."
                 />
                 {formData.reading_time && (
                   <p className="mt-1 text-xs text-slate-500">Tahmini okuma suresi: {formData.reading_time}</p>
@@ -254,7 +254,7 @@ export function NewPostClient({ categories, tags }: Props) {
                   className="rounded"
                 />
                 <label htmlFor="featured" className="text-sm text-slate-700">
-                  One Cikan
+                  Öne Çıkan
                 </label>
               </div>
 
@@ -267,16 +267,16 @@ export function NewPostClient({ categories, tags }: Props) {
                   className="rounded"
                 />
                 <label htmlFor="disclaimer" className="text-sm text-slate-700">
-                  Yasal Uyari Goster
+                  Yasal Uyarı Goster
                 </label>
               </div>
             </div>
           </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="mb-4 font-medium text-slate-700">Gorsel</h2>
+            <h2 className="mb-4 font-medium text-slate-700">Görsel</h2>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">Kapak Gorseli URL</label>
+              <label className="mb-1 block text-sm font-medium text-slate-700">Kapak Görseli URL</label>
               <input
                 type="url"
                 value={formData.featured_image_url}
@@ -325,13 +325,13 @@ export function NewPostClient({ categories, tags }: Props) {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">OG Gorseli</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">OG Görseli</label>
                 <input
                   type="url"
                   value={formData.og_image_url}
                   onChange={(e) => setFormData((prev) => ({ ...prev, og_image_url: e.target.value }))}
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Bos birakilirsa kapak gorseli kullanilir"
+                  placeholder="Bos birakilirsa kapak Görseli kullanilir"
                 />
               </div>
             </div>

@@ -119,12 +119,12 @@ export function EditPostClient({ post, categories, tags }: Props) {
     <AdminLayout>
       <div className="mb-6 flex items-center justify-between">
         <div>
-          <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">Yaziyi Duzenle</h1>
+          <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">Yazıyi Düzenle</h1>
           <Link
             href="/admin/posts"
             className="mt-2 inline-block text-sm text-slate-500 hover:text-[var(--color-navy)]"
           >
-            &larr; Yazilar Listesine Don
+            &larr; Yazılar Listesine Dön
           </Link>
         </div>
       </div>
@@ -145,7 +145,7 @@ export function EditPostClient({ post, categories, tags }: Props) {
                   onChange={(e) => handleTitleChange(e.target.value)}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Yazi basligi"
+                  placeholder="Yazı basligi"
                 />
               </div>
 
@@ -157,7 +157,7 @@ export function EditPostClient({ post, categories, tags }: Props) {
                   onChange={(e) => setFormData((prev) => ({ ...prev, slug: e.target.value }))}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="yazi-slug"
+                  placeholder="Yazı-slug"
                 />
               </div>
 
@@ -173,14 +173,14 @@ export function EditPostClient({ post, categories, tags }: Props) {
               </div>
 
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">Icerik *</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">İçerik *</label>
                 <textarea
                   value={formData.content}
                   onChange={(e) => handleContentChange(e.target.value)}
                   rows={20}
                   required
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 font-mono text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Yazi icerigi..."
+                  placeholder="Yazı icerigi..."
                 />
                 {formData.reading_time && (
                   <p className="mt-1 text-xs text-slate-500">Tahmini okuma suresi: {formData.reading_time}</p>
@@ -190,9 +190,9 @@ export function EditPostClient({ post, categories, tags }: Props) {
           </div>
 
           <div className="rounded-xl border border-slate-200 bg-white p-6">
-            <h2 className="mb-4 font-medium text-slate-700">Gorsel</h2>
+            <h2 className="mb-4 font-medium text-slate-700">Görsel</h2>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-700">Kapak Gorseli URL</label>
+              <label className="mb-1 block text-sm font-medium text-slate-700">Kapak Görseli URL</label>
               <input
                 type="url"
                 value={formData.featured_image_url}
@@ -245,13 +245,13 @@ export function EditPostClient({ post, categories, tags }: Props) {
               </div>
               
               <div>
-                <label className="mb-1 block text-sm font-medium text-slate-700">OG Gorseli</label>
+                <label className="mb-1 block text-sm font-medium text-slate-700">OG Görseli</label>
                 <input
                   type="url"
                   value={formData.og_image_url}
                   onChange={(e) => setFormData((prev) => ({ ...prev, og_image_url: e.target.value }))}
                   className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
-                  placeholder="Bos birakilirsa kapak gorseli kullanilir"
+                  placeholder="Bos birakilirsa kapak Görseli kullanilir"
                 />
               </div>
             </div>
@@ -320,7 +320,7 @@ export function EditPostClient({ post, categories, tags }: Props) {
                   className="rounded"
                 />
                 <label htmlFor="featured" className="text-sm text-slate-700">
-                  One Cikan Yazi
+                  Öne Çıkan Yazı
                 </label>
               </div>
 
@@ -333,7 +333,7 @@ export function EditPostClient({ post, categories, tags }: Props) {
                   className="rounded"
                 />
                 <label htmlFor="disclaimer" className="text-sm text-slate-700">
-                  Yasal Uyari Goster
+                  Yasal Uyarı Goster
                 </label>
               </div>
             </div>
@@ -358,11 +358,11 @@ export function EditPostClient({ post, categories, tags }: Props) {
           {post.status === "published" && (
             <div className="mt-4">
               <Link
-                href={`/yazilar/${post.slug}`}
+                href={`/Yazılar/${post.slug}`}
                 target="_blank"
                 className="flex w-full items-center justify-center rounded-lg border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100"
               >
-                Sitede Goruntule &#x2197;
+                Sitede Görüntüle &#x2197;
               </Link>
             </div>
           )}

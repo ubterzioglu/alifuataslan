@@ -3,7 +3,7 @@ import { AboutPageContent } from "@/components/about-page-content";
 
 export const metadata: Metadata = {
   title: "Hakkımda",
-description:
+  description:
     "Ali Fuat Aslan'ın finansal vizyonu, eğitim odaklı yaklaşımı ve Finansal Günlük platformunun amacı.",
   alternates: { canonical: "/hakkimda" },
 };

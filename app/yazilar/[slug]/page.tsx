@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
 
   if (!post) {
     return {
-      title: "Yazi Bulunamadi",
-      description: "Istenen yazi bulunamadi.",
+      title: "Yazı Bulunamadı",
+      description: "İstenen yazı bulunamadı.",
     };
   }
 
@@ -37,13 +37,13 @@ export async function generateMetadata({ params }: PostPageProps): Promise<Metad
       description: post.seo_description || post.excerpt || undefined,
       publishedTime: post.published_at || post.created_at,
       authors: [post.author_name],
-      images: post.og_image_url || post.featured_image_url ? [{ url: post.og_image_url || post.featured_image_url as string }] : [],
+      images: post.og_image_url || post.featured_image_url ? [{ url: post.og_image_url || (post.featured_image_url as string) }] : [],
     },
     twitter: {
       card: "summary_large_image",
       title: post.seo_title || post.title,
       description: post.seo_description || post.excerpt || undefined,
-      images: post.og_image_url || post.featured_image_url ? [post.og_image_url || post.featured_image_url as string] : [],
+      images: post.og_image_url || post.featured_image_url ? [post.og_image_url || (post.featured_image_url as string)] : [],
     },
   };
 }
@@ -64,11 +64,11 @@ export default async function PostDetailPage({ params }: PostPageProps) {
         {post.excerpt && <p className="mt-4 text-base leading-8 text-[var(--color-slate)]">{post.excerpt}</p>}
         <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-slate-500">
           <time dateTime={post.published_at || post.created_at}>{formatDate(post.published_at || post.created_at)}</time>
-          <span aria-hidden="true">"</span>
+          <span aria-hidden="true">{"\u2022"}</span>
           <span>{post.author_name}</span>
           {post.reading_time && (
             <>
-              <span aria-hidden="true">"</span>
+              <span aria-hidden="true">{"\u2022"}</span>
               <span>{post.reading_time}</span>
             </>
           )}
@@ -82,13 +82,13 @@ export default async function PostDetailPage({ params }: PostPageProps) {
 
       <section className="prose-content mt-8 rounded-2xl border border-slate-200 bg-white p-6 text-[15px] text-[var(--color-slate)] shadow-sm md:p-8">
         <div className="whitespace-pre-wrap">{post.content}</div>
-        
+
         {post.disclaimer_enabled && (
           <>
-            <h2 className="mt-12 font-[var(--font-serif)] text-xl font-semibold text-[var(--color-navy)]">Yasal Uyari</h2>
+            <h2 className="mt-12 font-[var(--font-serif)] text-xl font-semibold text-[var(--color-navy)]">Yasal Uyarı</h2>
             <div className="mt-4 rounded-lg bg-slate-50 p-4 text-sm text-slate-600">
               <p>
-                Bu yazi egitsel niteliktedir. Sitede yer alan icerikler, yorumlar ve analizler kesinlikle yatirim tavsiyesi niteligi tasimaz. Finansal kararlar kisisel risk profili ve bireysel kosullar dikkate alinarak verilmelidir.
+                Bu yazı eğitsel niteliktedir. Sitede yer alan içerikler, yorumlar ve analizler kesinlikle yatırım tavsiyesi niteliği taşımaz. Finansal kararlar kişisel risk profili ve bireysel koşullar dikkate alınarak verilmelidir.
               </p>
             </div>
           </>

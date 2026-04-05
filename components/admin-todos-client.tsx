@@ -49,7 +49,7 @@ export function ContentTodosClient({ initialTodos }: Props) {
       setTodos([todo, ...todos]);
       setNewTodoTitle("");
     } catch (err) {
-      setError("Gorev eklenirken hata olustu.");
+      setError("Görev eklenirken hata olustu.");
     } finally {
       setLoading(false);
     }
@@ -65,12 +65,12 @@ export function ContentTodosClient({ initialTodos }: Props) {
   };
 
   const handleDelete = async (id: number) => {
-    if (!confirm("Gorevi silmek istediginize emin misiniz?")) return;
+    if (!confirm("Görevi silmek istediginize emin misiniz?")) return;
     try {
       await deleteContentTodo(id);
       setTodos(todos.filter((t) => t.id !== id));
     } catch (err) {
-      alert("Gorev silinemedi.");
+      alert("Görev silinemedi.");
     }
   };
 
@@ -78,7 +78,7 @@ export function ContentTodosClient({ initialTodos }: Props) {
     <AdminLayout>
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">Icerik Gorevleri</h1>
+          <h1 className="font-[var(--font-serif)] text-2xl font-bold text-[var(--color-navy)]">İçerik Görevleri</h1>
           <p className="mt-1 text-sm text-slate-500">Blog operasyonlari icin todo listesi</p>
         </div>
       </div>
@@ -92,7 +92,7 @@ export function ContentTodosClient({ initialTodos }: Props) {
           type="text"
           value={newTodoTitle}
           onChange={(e) => setNewTodoTitle(e.target.value)}
-          placeholder="Yeni icerik fikri veya gorev ekle..."
+          placeholder="Yeni İçerik fikri veya Görev ekle..."
           className="flex-1 rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-[var(--color-navy)] focus:outline-none"
         />
         <button
@@ -109,10 +109,10 @@ export function ContentTodosClient({ initialTodos }: Props) {
           <thead className="border-b border-slate-200 bg-slate-50">
             <tr>
               <th className="w-8 px-4 py-3"></th>
-              <th className="px-4 py-3 font-medium text-slate-600">Gorev</th>
+              <th className="px-4 py-3 font-medium text-slate-600">Görev</th>
               <th className="px-4 py-3 font-medium text-slate-600">Durum</th>
               <th className="px-4 py-3 font-medium text-slate-600">Oncelik</th>
-              <th className="px-4 py-3 font-medium text-slate-600">Iliskili Yazi</th>
+              <th className="px-4 py-3 font-medium text-slate-600">İlişkili Yazı</th>
               <th className="px-4 py-3 font-medium text-slate-600">Islemler</th>
             </tr>
           </thead>
@@ -173,7 +173,7 @@ export function ContentTodosClient({ initialTodos }: Props) {
             {todos.length === 0 && (
               <tr>
                 <td colSpan={6} className="px-4 py-8 text-center text-slate-500">
-                  Henuz bir gorev eklenmemis.
+                  Henuz bir Görev eklenmemis.
                 </td>
               </tr>
             )}

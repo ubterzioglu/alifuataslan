@@ -15,7 +15,7 @@ export function AdminLayout({ children }: AdminLayoutProps) {
             </Link>
             <nav className="flex items-center gap-4 text-sm">
               <Link href="/admin/posts" className="text-slate-600 hover:text-[var(--color-navy)]">
-                Yazilar
+                Yazılar
               </Link>
               <Link href="/admin/categories" className="text-slate-600 hover:text-[var(--color-navy)]">
                 Kategoriler
@@ -24,12 +24,12 @@ export function AdminLayout({ children }: AdminLayoutProps) {
                 Etiketler
               </Link>
               <Link href="/admin/todos" className="text-slate-600 hover:text-[var(--color-navy)]">
-                Icerik Planlama
+                İçerik Planlama
               </Link>
             </nav>
           </div>
           <Link href="/" className="text-sm text-slate-500 hover:text-[var(--color-navy)]">
-            Siteye Don
+            Siteye Dön
           </Link>
         </div>
       </header>

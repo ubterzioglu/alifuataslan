@@ -9,7 +9,7 @@ import { navItems } from "@/lib/site";
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const previewActive = pathname === "/preview.html";
+  const previewActive = pathname === "/preview";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#0A1A33]/95 backdrop-blur">
@@ -54,7 +54,7 @@ export function Navbar() {
           </nav>
 
           <Link
-            href="/preview.html"
+            href="/preview"
             className={`focus-ring hidden rounded-md border px-3 py-1.5 text-xs font-semibold transition sm:inline-flex ${
               previewActive
                 ? "border-[var(--color-gold)] bg-[#132748] text-[var(--color-gold)]"
@@ -99,7 +99,7 @@ export function Navbar() {
             })}
             <li>
               <Link
-                href="/preview.html"
+                href="/preview"
                 onClick={() => setOpen(false)}
                 className={`focus-ring block rounded-md px-3 py-2 text-sm font-medium ${
                   previewActive ? "bg-[#132748] text-[var(--color-gold)]" : "text-white hover:bg-[#132748]"

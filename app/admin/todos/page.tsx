@@ -5,7 +5,7 @@ import { ContentTodosClient } from "@/components/admin-todos-client";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Icerik Gorevleri",
+  title: "İçerik Görevleri",
 };
 
 export default async function ContentTodosPage() {
