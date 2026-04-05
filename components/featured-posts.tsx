@@ -1,8 +1,10 @@
-﻿import { featuredPosts } from "@/data/posts";
+import { getFeaturedPosts } from "@/lib/supabase";
 import { PostCard } from "@/components/post-card";
 import { SectionHeading } from "@/components/section-heading";
 
-export function FeaturedPosts() {
+export async function FeaturedPosts() {
+  const posts = await getFeaturedPosts();
+
   return (
     <section className="mx-auto max-w-6xl px-4 pb-12 md:pb-16">
       <SectionHeading
@@ -10,7 +12,7 @@ export function FeaturedPosts() {
         description="Manset niteligindeki egitsel analizler ve dikkatle secilmis icerikler."
       />
       <div className="grid gap-5 md:grid-cols-2">
-        {featuredPosts.map((post) => (
+        {posts.map((post) => (
           <PostCard key={post.slug} post={post} compact />
         ))}
       </div>

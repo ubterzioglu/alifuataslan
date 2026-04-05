@@ -1,7 +1,9 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { SectionHeading } from "@/components/section-heading";
-import { posts } from "@/data/posts";
+import { getPublishedPosts } from "@/lib/supabase";
 import { PostCard } from "@/components/post-card";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Yazilar",
@@ -10,10 +12,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "/yazilar" },
 };
 
-export default function BlogListPage() {
-  const orderedPosts = [...posts].sort(
-    (a, b) => +new Date(b.publishedAt) - +new Date(a.publishedAt),
-  );
+export default async function BlogListPage() {
+  const orderedPosts = await getPublishedPosts();
 
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
