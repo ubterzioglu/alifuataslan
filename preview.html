@@ -5,30 +5,68 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Finansal Günlük - Todo Durumu</title>
   <style>
-    body { font-family: Arial, Helvetica, sans-serif; background: #f7f8fa; margin: 0; padding: 32px 16px; color: #1f2937; }
-    .container { max-width: 1080px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); overflow: hidden; }
-    .header { background: #0f2747; color: #fff; padding: 24px; }
-    .header h1 { margin: 0 0 8px; font-size: 28px; }
-    .header p { margin: 0; color: #d7dee8; }
-    .section { padding: 22px 24px; border-top: 1px solid #e5e7eb; }
-    h2 { margin: 0 0 12px; font-size: 20px; color: #0f2747; }
+    body { font-family: Arial, Helvetica, sans-serif; background: #f7f8fa; margin: 0; padding: 24px 12px; color: #1f2937; font-size: 13px; }
+    .container { max-width: 1120px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); overflow: hidden; }
+    .header { background: #0f2747; color: #fff; padding: 18px 20px; }
+    .header h1 { margin: 0 0 6px; font-size: 22px; }
+    .header p { margin: 0; color: #d7dee8; font-size: 12px; }
+    .section { padding: 16px 20px; border-top: 1px solid #e5e7eb; }
+    h2 { margin: 0 0 10px; font-size: 16px; color: #0f2747; }
     table { width: 100%; border-collapse: collapse; }
-    th, td { border-bottom: 1px solid #e5e7eb; padding: 10px 8px; text-align: left; vertical-align: top; }
-    th { background: #f9fafb; }
-    .status { font-weight: 700; padding: 4px 10px; border-radius: 999px; display: inline-block; font-size: 12px; }
-    .done { background: #dcfce7; color: #166534; }
-    .todo { background: #e5e7eb; color: #374151; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: 8px 6px; text-align: left; vertical-align: top; font-size: 12px; }
+    th { background: #f9fafb; font-size: 11px; text-transform: uppercase; letter-spacing: .02em; }
+
+    .status-pill { font-weight: 700; padding: 3px 8px; border-radius: 999px; display: inline-block; font-size: 11px; }
+    .status-done { background: #dcfce7; color: #166534; }
+    .status-revision { background: #fee2e2; color: #991b1b; }
+    .status-hold { background: #fef3c7; color: #92400e; }
 
     .accordion { border: 1px solid #d9e0ea; border-radius: 10px; background: #f9fbff; overflow: hidden; }
-    .accordion summary { cursor: pointer; list-style: none; padding: 14px 16px; background: #f2f7ff; color: #0f2747; font-weight: 700; }
+    .accordion summary { cursor: pointer; list-style: none; padding: 10px 12px; background: #f2f7ff; color: #0f2747; font-weight: 700; font-size: 12px; }
     .accordion summary::-webkit-details-marker { display: none; }
-    .accordion summary::after { content: "+"; float: right; font-size: 18px; line-height: 1; }
+    .accordion summary::after { content: "+"; float: right; font-size: 14px; line-height: 1; }
     .accordion[open] summary::after { content: "−"; }
-    .accordion-content { padding: 14px 16px 16px; font-size: 14px; line-height: 1.7; color: #1f2937; background: #fff; }
-    .source-note { margin-top: 10px; font-size: 13px; color: #52627a; font-weight: 600; }
-    .muted { color: #6b7280; font-size: 13px; margin-top: 8px; }
-    .error { color: #b91c1c; font-size: 13px; margin-top: 8px; }
-    .raw-message { margin: 0; white-space: pre-wrap; font-family: inherit; font-size: 14px; line-height: 1.7; }
+    .accordion-content { padding: 10px 12px 12px; font-size: 12px; line-height: 1.6; color: #1f2937; background: #fff; }
+    .source-note { margin-top: 8px; font-size: 11px; color: #52627a; font-weight: 600; }
+
+    .muted { color: #6b7280; font-size: 11px; margin-top: 8px; }
+    .error { color: #b91c1c; font-size: 11px; margin-top: 8px; }
+    .raw-message { margin: 0; white-space: pre-wrap; font-family: inherit; font-size: 12px; line-height: 1.6; }
+
+    .action-btn {
+      border: 1px solid #d1d5db;
+      background: #fff;
+      border-radius: 6px;
+      width: 24px;
+      height: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      margin-right: 4px;
+    }
+
+    .action-btn:hover { background: #f3f4f6; }
+    .cell-input, .cell-select {
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      padding: 4px 6px;
+      font-size: 12px;
+      background: #fff;
+    }
+
+    .cell-input:focus, .cell-select:focus {
+      outline: 2px solid rgba(15, 39, 71, 0.2);
+      border-color: #0f2747;
+    }
+
+    .w-section { min-width: 170px; }
+    .w-task { min-width: 280px; }
+    .w-note { min-width: 220px; }
+    .w-actions { width: 86px; white-space: nowrap; }
   </style>
 </head>
 <body>
@@ -43,12 +81,12 @@
       <table>
         <thead>
           <tr>
-            <th>#</th>
-            <th>Bölüm</th>
-            <th>İstenen</th>
+            <th class="w-section">Bölüm</th>
+            <th class="w-task">İstenen</th>
             <th>Durum</th>
             <th>Kim yapacak ?</th>
-            <th>Not</th>
+            <th class="w-note">Not</th>
+            <th class="w-actions">İşlem</th>
           </tr>
         </thead>
         <tbody id="todo-body">
@@ -104,71 +142,6 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
         </div>
       </details>
     </div>
-
-    <div class="section">
-      <h2>Orijinal Todo Metni</h2>
-      <p class="source-note">İçerik değiştirilmeden eklenmiştir.</p>
-      <details class="accordion">
-        <summary>Todo Metnini Görüntüle</summary>
-        <div class="accordion-content">
-          <pre class="raw-message">1. Proje Kimliği ve Genel Amaç
-#	İstenen	Durum	Not
-☑	Alan adı: www.alifuataslan.com	Yapıldı	Domain bilgisi netleştirildi.
-☑	Site başlığı: FİNANSAL GÜNLÜK	Yapıldı	Marka adı kesinleşti.
-☑	Site kişisel marka ve finans odaklı bir yapı olacak	Yapıldı	Konumlandırma net şekilde belirlendi.
-☑	Eğitim ve analiz platformu kimliğinde olacak	Yapıldı	Temel vizyon tanımlandı.
-☑	Kesinlikle hisse sinyali / al-sat tavsiyesi vermeyecek	Yapıldı	Yasal ve içerik dili açısından önemli karar.
-2. Tasarım ve Görsel Dil
-#	İstenen	Durum	Not
-☑	Beyaz ağırlıklı, ferah, sade ve yazı odaklı tasarım	Yapıldı	Genel UI yönü netleşti.
-☑	Tuncay Turşucu tarzında ama birebir kopya olmayan bir hissiyat	Yapıldı	Referans olarak alındı, özgün yorumlanacak.
-☑	Ana renk: kurumsal lacivert	Yapıldı	Header ve başlıklarda kullanılacak.
-☑	Vurgu rengi: antik altın	Yapıldı	Logo, butonlar ve aktif sekmeler için.
-☑	Gövde metinlerinde antrasit/siyah tonlar	Yapıldı	Okunabilirlik için uygun.
-☐	Header alanında çalışma masası temalı arka plan görseli	Bekliyor	Görsel seçimi / üretimi yapılacak.
-3. Menü ve Site Mimarisi
-#	İstenen	Durum	Not
-☑	Üst menüde 5 ana başlık olacak	Yapıldı	Menü yapısı belirlendi.
-☑	Ana Sayfa	Yapıldı	Temel sayfa.
-☑	Hakkımda	Yapıldı	Kişisel marka bölümü.
-☑	İletişim	Yapıldı	İletişim bilgileri ve sosyal medya alanı.
-☑	Yasal Uyarı	Yapıldı	Sorumluluk reddi için gerekli.
-☑	Eğitimler	Yapıldı	İleride LMS altyapısına evrilecek.
-4. Ana Sayfa İçeriği
-#	İstenen	Durum	Not
-☑	Sağ tarafta 3 veya 4 adet öne çıkan yazı alanı	Yapıldı	Manşet / featured posts alanı olacak.
-☑	Orta alanda son 5 yazının tarih ile listelenmesi	Yapıldı	Ana akış bu yapıda olacak.
-☐	Yazı kartlarının tasarımı	Bekliyor	UI aşamasında şekillenecek.
-☐	Hero alanının nihai düzeni	Bekliyor	İlk taslakta netleştirilecek.
-5. Blog Kategorileri
-#	İstenen	Durum	Not
-☑	Piyasa Yorumları	Yapıldı	Kategori tanımlandı.
-☑	Analiz Okulu	Yapıldı	Kategori tanımlandı.
-☑	Finans Tarihi	Yapıldı	Kategori tanımlandı.
-☑	Yatırım Araçları	Yapıldı	Kategori tanımlandı.
-☑	Bilanço Analizi	Yapıldı	Kategori tanımlandı.
-☑	Strateji &amp; Psikoloji	Yapıldı	Kategori tanımlandı.
-6. Sayfa Bazlı İçerikler
-#	İstenen	Durum	Not
-☑	Hakkımda sayfasında özgeçmiş ve finansal vizyon yer alacak	Yapıldı	Sayfa içeriği tanımlandı.
-☑	İletişim sayfasında e-posta ve sosyal medya bağlantıları olacak	Yapıldı	İletişim alanı belli.
-☑	Yasal Uyarı sayfası profesyonel sorumluluk reddi metni içerecek	Yapıldı	Çok kritik sayfalardan biri.
-☑	Eğitimler sayfası başlangıçta tanıtım sayfası olacak	Yapıldı	İleride LMS’ye dönüşecek yapı.
-7. İletişim ve Sosyal Medya Bilgileri
-#	İstenen	Durum	Not
-☑	E-posta: aslanalifuat1@gmail.com	Yapıldı	İletişim bilgisi net.
-☑	LinkedIn alanı eklenecek	Yapıldı	Link paylaşıldı.
-☑	X (Twitter) için yer ayrılacak	Yapıldı	Şu an aktif değil, placeholder olabilir.
-☐	Instagram linki netleştirilecek	Bekliyor	Şimdilik alan ayrılabilir.
-8. Teknik Beklentiler
-#	İstenen	Durum	Not
-☑	Site hızlı açılacak bir yapıda geliştirilecek	Yapıldı	Next.js / React yönü uygun.
-☑	Mobil uyumlu olacak	Yapıldı	Responsive yapı şart.
-☑	SEO uyumlu olacak	Yapıldı	Blog ve kişisel marka için önemli.
-☑	İleride büyümeye uygun yapı kurulacak	Yapıldı	CMS / LMS / admin panel potansiyeli düşünülüyor.</pre>
-        </div>
-      </details>
-    </div>
   </div>
 
   <script>
@@ -177,6 +150,9 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
 
     const bodyEl = document.getElementById("todo-body");
     const statusEl = document.getElementById("db-status");
+
+    const STATUS_OPTIONS = ["DONE", "REVISION", "ON HOLD"];
+    const OWNER_OPTIONS = ["UBT", "AFA"];
 
     function escapeHtml(value) {
       return String(value ?? "")
@@ -187,58 +163,191 @@ Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkü
         .replace(/'/g, "&#039;");
     }
 
-    function statusClass(status) {
-      const s = String(status || "").toLowerCase();
-      return s === "yapıldı" ? "done" : "todo";
+    function normalizeStatus(status) {
+      const s = String(status || "").toUpperCase();
+      if (s.includes("YAPILDI") || s === "DONE") return "DONE";
+      if (s.includes("BEKL") || s === "ON HOLD") return "ON HOLD";
+      if (s.includes("YAPILMADI") || s === "REVISION") return "REVISION";
+      return "REVISION";
     }
 
-    function checkboxFor(status) {
-      const s = String(status || "").toLowerCase();
-      return s === "yapıldı" ? "☑" : "☐";
+    function stripSectionNumber(section) {
+      return String(section || "").replace(/^\s*\d+\.\s*/, "").trim();
     }
+
+    function statusClass(status) {
+      const s = normalizeStatus(status);
+      if (s === "DONE") return "status-done";
+      if (s === "ON HOLD") return "status-hold";
+      return "status-revision";
+    }
+
+    function renderReadRow(item) {
+      const status = normalizeStatus(item.status);
+      return `
+        <tr data-id="${item.id}">
+          <td>${escapeHtml(stripSectionNumber(item.section || "-"))}</td>
+          <td>${escapeHtml(item.task || "-")}</td>
+          <td><span class="status-pill ${statusClass(status)}">${escapeHtml(status)}</span></td>
+          <td>${escapeHtml(item.owner || "UBT")}</td>
+          <td>${escapeHtml(item.note || "-")}</td>
+          <td>
+            <button class="action-btn" title="Düzenle" onclick="startEdit(${item.id})">✏</button>
+            <button class="action-btn" title="Sil" onclick="deleteRow(${item.id})">🗑</button>
+          </td>
+        </tr>
+      `;
+    }
+
+    function renderEditRow(item) {
+      const status = normalizeStatus(item.status);
+      const owner = OWNER_OPTIONS.includes(item.owner) ? item.owner : "UBT";
+
+      const statusOptions = STATUS_OPTIONS
+        .map((opt) => `<option value="${opt}" ${opt === status ? "selected" : ""}>${opt}</option>`)
+        .join("");
+
+      const ownerOptions = OWNER_OPTIONS
+        .map((opt) => `<option value="${opt}" ${opt === owner ? "selected" : ""}>${opt}</option>`)
+        .join("");
+
+      return `
+        <tr data-id="${item.id}" data-editing="1">
+          <td><input class="cell-input" id="section-${item.id}" value="${escapeHtml(stripSectionNumber(item.section || ""))}" /></td>
+          <td><input class="cell-input" id="task-${item.id}" value="${escapeHtml(item.task || "")}" /></td>
+          <td><select class="cell-select" id="status-${item.id}">${statusOptions}</select></td>
+          <td><select class="cell-select" id="owner-${item.id}">${ownerOptions}</select></td>
+          <td><input class="cell-input" id="note-${item.id}" value="${escapeHtml(item.note || "")}" /></td>
+          <td>
+            <button class="action-btn" title="Kaydet" onclick="saveEdit(${item.id})">💾</button>
+            <button class="action-btn" title="İptal" onclick="cancelEdit(${item.id})">✖</button>
+          </td>
+        </tr>
+      `;
+    }
+
+    let cache = [];
 
     async function loadTodos() {
       try {
         const response = await fetch(
-          `${SUPABASE_URL}/rest/v1/todo_items?select=section,task,status,owner,note,sort_order&order=sort_order.asc`,
+          `${SUPABASE_URL}/rest/v1/todo_items?select=id,section,task,status,owner,note,sort_order&order=sort_order.asc`,
           {
             headers: {
               apikey: SUPABASE_ANON_KEY,
-              Authorization: `Bearer ${SUPABASE_ANON_KEY}`
-            }
-          }
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+          },
         );
 
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
         const rows = await response.json();
+        cache = Array.isArray(rows) ? rows : [];
 
-        if (!Array.isArray(rows) || rows.length === 0) {
+        if (cache.length === 0) {
           bodyEl.innerHTML = '<tr><td colspan="6">Kayıt bulunamadı.</td></tr>';
           statusEl.textContent = "Supabase bağlantısı başarılı, ancak tablo boş.";
           return;
         }
 
-        bodyEl.innerHTML = rows
-          .map((item) => `
-            <tr>
-              <td>${checkboxFor(item.status)}</td>
-              <td>${escapeHtml(item.section || "-")}</td>
-              <td>${escapeHtml(item.task)}</td>
-              <td><span class="status ${statusClass(item.status)}">${escapeHtml(item.status)}</span></td>
-              <td>${escapeHtml(item.owner || "UBT")}</td>
-              <td>${escapeHtml(item.note || "-")}</td>
-            </tr>
-          `)
-          .join("");
-
-        statusEl.textContent = `Supabase bağlantısı başarılı. ${rows.length} kayıt yüklendi.`;
+        bodyEl.innerHTML = cache.map(renderReadRow).join("");
+        statusEl.className = "muted";
+        statusEl.textContent = `Supabase bağlantısı başarılı. ${cache.length} kayıt yüklendi.`;
       } catch (error) {
         bodyEl.innerHTML = '<tr><td colspan="6">Veri yüklenemedi.</td></tr>';
         statusEl.className = "error";
         statusEl.textContent = `Supabase bağlantısı başarısız: ${error.message}`;
+      }
+    }
+
+    function startEdit(id) {
+      const item = cache.find((x) => x.id === id);
+      if (!item) return;
+      const row = document.querySelector(`tr[data-id="${id}"]`);
+      if (!row) return;
+      row.outerHTML = renderEditRow(item);
+    }
+
+    function cancelEdit(id) {
+      const item = cache.find((x) => x.id === id);
+      if (!item) return;
+      const row = document.querySelector(`tr[data-id="${id}"]`);
+      if (!row) return;
+      row.outerHTML = renderReadRow(item);
+    }
+
+    async function saveEdit(id) {
+      const section = document.getElementById(`section-${id}`)?.value?.trim() || "";
+      const task = document.getElementById(`task-${id}`)?.value?.trim() || "";
+      const status = document.getElementById(`status-${id}`)?.value || "REVISION";
+      const owner = document.getElementById(`owner-${id}`)?.value || "UBT";
+      const note = document.getElementById(`note-${id}`)?.value?.trim() || "";
+
+      if (!task) {
+        statusEl.className = "error";
+        statusEl.textContent = "İstenen alanı boş olamaz.";
+        return;
+      }
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/todo_items?id=eq.${id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            Prefer: "return=representation",
+          },
+          body: JSON.stringify({ section, task, status, owner, note }),
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const updated = await response.json();
+        if (Array.isArray(updated) && updated[0]) {
+          const idx = cache.findIndex((x) => x.id === id);
+          if (idx >= 0) cache[idx] = updated[0];
+        }
+
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (row) row.outerHTML = renderReadRow(cache.find((x) => x.id === id));
+
+        statusEl.className = "muted";
+        statusEl.textContent = "Kayıt güncellendi.";
+      } catch (error) {
+        statusEl.className = "error";
+        statusEl.textContent = `Güncelleme hatası: ${error.message}`;
+      }
+    }
+
+    async function deleteRow(id) {
+      if (!confirm("Bu satırı silmek istediğine emin misin?")) return;
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}/rest/v1/todo_items?id=eq.${id}`, {
+          method: "DELETE",
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+          },
+        });
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        cache = cache.filter((x) => x.id !== id);
+        const row = document.querySelector(`tr[data-id="${id}"]`);
+        if (row) row.remove();
+
+        if (cache.length === 0) {
+          bodyEl.innerHTML = '<tr><td colspan="6">Kayıt bulunamadı.</td></tr>';
+        }
+
+        statusEl.className = "muted";
+        statusEl.textContent = "Kayıt silindi.";
+      } catch (error) {
+        statusEl.className = "error";
+        statusEl.textContent = `Silme hatası: ${error.message}`;
       }
     }
 
