@@ -1,5 +1,6 @@
-﻿"use client";
+"use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
@@ -14,7 +15,17 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#0A1A33]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="inline-flex items-center gap-3">
-          <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
+          <Link href="/" className="focus-ring inline-flex items-center gap-3 rounded-sm" onClick={() => setOpen(false)}>
+            <span className="inline-flex h-11 w-11 overflow-hidden rounded-full border border-white/35 bg-white shadow-[0_6px_14px_rgba(0,0,0,0.28)]">
+              <Image
+                src="/images/logo.png"
+                alt="Finansal Günlük logo"
+                width={44}
+                height={44}
+                className="h-full w-full object-cover"
+                priority
+              />
+            </span>
             <span className="font-[var(--font-serif)] text-lg text-white">Finansal Günlük</span>
             <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
           </Link>
