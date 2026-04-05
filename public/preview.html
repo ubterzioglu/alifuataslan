@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Finansal Günlük - Todo Durumu</title>
+  <style>
+    body { font-family: Arial, Helvetica, sans-serif; background: #f7f8fa; margin: 0; padding: 32px 16px; color: #1f2937; }
+    .container { max-width: 1080px; margin: 0 auto; background: #fff; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,.08); overflow: hidden; }
+    .header { background: #0f2747; color: #fff; padding: 24px; }
+    .header h1 { margin: 0 0 8px; font-size: 28px; }
+    .header p { margin: 0; color: #d7dee8; }
+    .section { padding: 22px 24px; border-top: 1px solid #e5e7eb; }
+    h2 { margin: 0 0 12px; font-size: 20px; color: #0f2747; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { border-bottom: 1px solid #e5e7eb; padding: 10px 8px; text-align: left; vertical-align: top; }
+    th { background: #f9fafb; }
+    .status { font-weight: 700; padding: 4px 10px; border-radius: 999px; display: inline-block; font-size: 12px; }
+    .done { background: #dcfce7; color: #166534; }
+    .todo { background: #e5e7eb; color: #374151; }
+
+    .accordion { border: 1px solid #d9e0ea; border-radius: 10px; background: #f9fbff; overflow: hidden; }
+    .accordion summary { cursor: pointer; list-style: none; padding: 14px 16px; background: #f2f7ff; color: #0f2747; font-weight: 700; }
+    .accordion summary::-webkit-details-marker { display: none; }
+    .accordion summary::after { content: "+"; float: right; font-size: 18px; line-height: 1; }
+    .accordion[open] summary::after { content: "−"; }
+    .accordion-content { padding: 14px 16px 16px; font-size: 14px; line-height: 1.7; color: #1f2937; background: #fff; }
+    .source-note { margin-top: 10px; font-size: 13px; color: #52627a; font-weight: 600; }
+    .muted { color: #6b7280; font-size: 13px; margin-top: 8px; }
+    .error { color: #b91c1c; font-size: 13px; margin-top: 8px; }
+    .raw-message { margin: 0; white-space: pre-wrap; font-family: inherit; font-size: 14px; line-height: 1.7; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>FİNANSAL GÜNLÜK</h1>
+      <p>Todo listesi durum güncellemesi</p>
+    </div>
+
+    <div class="section">
+      <h2>Todo Listesi</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Bölüm</th>
+            <th>İstenen</th>
+            <th>Durum</th>
+            <th>Kim yapacak ?</th>
+            <th>Not</th>
+          </tr>
+        </thead>
+        <tbody id="todo-body">
+          <tr><td colspan="6">Yükleniyor...</td></tr>
+        </tbody>
+      </table>
+      <p id="db-status" class="muted">Supabase bağlantısı test ediliyor...</p>
+    </div>
+
+    <div class="section">
+      <h2>Kaynak Mesaj</h2>
+      <p class="source-note">İstenenler bu mesaj kaynak alınarak belirlenmiştir.</p>
+      <details class="accordion">
+        <summary>Kaynak Mesajı Görüntüle</summary>
+        <div class="accordion-content">
+          <pre class="raw-message">Barış bey merhabalar 
+Alan Adı: www.alifuataslan.com
+Site Başlığı: FİNANSAL GÜNLÜK
+1. PROJENİN AMACI VE VİZYONU
+Kişisel markamı (Ali Fuat Aslan) finans camiasında konumlandırmak; borsa, piyasa analizleri, finans tarihi ve yatırım araçları üzerine bilgilendirici içerikler paylaşmak. Site bir "Eğitim ve Analiz Platformu" kimliğinde olacak, kesinlikle hisse sinyali veya al-sat tavsiyesi vermeyecektir.
+2. GÖRSEL TASARIM VE RENK PALETİ
+•	Konsept: Tuncay Turşucu (https://tuncaytursucu.com/) tarzında beyaz ağırlıklı, ferah, sade ve yazı odaklı bir yapı.
+•	Ana Renk: Kurumsal Lacivert (Header arka planı ve ana başlıklar için).
+•	Vurgu Rengi: Antik Altın) (Logo, butonlar ve aktif sekmeler için).
+•	Yazı Renkleri: Gövde metinlerinde Antrasit/Siyah arka planda Saf Beyaz 
+•	Header Görseli: Üst kısımda Finansal Günlük diye yazının olacağı kısımda ; şık bir çalışma masasını simgeleyen (fincan, kitap, kalem içeren) profesyonel ve hafif bulanık bir arka plan görseli kullanılacaktır.
+3. SİTE MİMARİSİ VE MENÜ YAPISI
+Üst menü (Navigation Bar) şu 5 ana başlıktan oluşacaktır:
+1.	Ana Sayfa: Son analizlerin ve yazıların kronolojik akışı.
+2.	Hakkımda: Özgeçmiş, finansal vizyon ve yatırım bakış açısı.
+3.	İletişim: E-posta adresi ve sosyal medya (X, LinkedIn, Instagram) linkleri.
+4.	Yasal Uyarı: Tuncay Turşucu’nun "Uyarı" sayfası referans alınarak hazırlanan, sorumluluk reddi metni.
+5.	Eğitimler: Başlangıçta tanıtım sayfası, ileride "LMS" (Eğitim Yönetim Sistemi) altyapısına dönüştürülecek alan.
+6.	ÖNE ÇIKAN YAZILAR (MANŞET ALANI) sayfanın sağ kısmında belirtilebilir 3 veya 4 adet yazının paylaşılması 
+7.	SON YAZILAR (ANA AKIŞ) sitenin orta kısmında tarih belirtilerek son 5 yazının paylaşılması 
+4. İÇERİK KATEGORİLERİ (BLOG YAPISI)
+Yazılar aşağıdaki etiket/kategori sistemiyle tasnif edilecektir:
+•	Piyasa Yorumları: Borsa ve güncel makro bakış.
+•	Analiz Okulu: Teknik ve temel analiz eğitim yazıları.
+•	Finans Tarihi: Geçmiş krizler ve piyasa olaylarının analizi.
+•	Yatırım Araçları: Borsa, Fon, Bono, Eurobond ve BES üzerine rehber içerikler.
+•	Bilanço Analizi: Şirket finansallarının yorumlanması.
+•	Strateji &amp; Psikoloji: Yatırımcı disiplini ve portföy yönetimi.
+
+
+5. İLETİŞİM VE SOSYAL MEDYA BİLGİLERİ
+•	E-posta: aslanalifuat1@gmail.com
+•	LinkedIn: https://www.linkedin.com/in/ali-fuat-aslan-00459229a/
+•	Diğer Sosyal Medyalar: X (Twitter) ikonu için yer ayrılmalıdır. Şu an da kullanmamaktayım ama bir hesap açacağım 
+
+Pazartesi günü üzerinde konuşacağımız web sitesi için İçeriği mümkün olduğunca düzenli bir şekilde toparlamaya çalıştım; ancak teknik dokunuşlar, tasarım ayarlamaları ve profesyonel yorumlar konusunda işin ehli olarak sizin tecrübenize güveniyorum. Konseptin bu taslakla birlikte zihninizde net bir şekilde canlanacağını umuyorum. Pazartesi günü detayları netleştirmek üzere görüşmek dileğiyle.
+Şimdiden elinize sağlık</pre>
+        </div>
+      </details>
+    </div>
+
+    <div class="section">
+      <h2>Orijinal Todo Metni</h2>
+      <p class="source-note">İçerik değiştirilmeden eklenmiştir.</p>
+      <details class="accordion">
+        <summary>Todo Metnini Görüntüle</summary>
+        <div class="accordion-content">
+          <pre class="raw-message">1. Proje Kimliği ve Genel Amaç
+#	İstenen	Durum	Not
+☑	Alan adı: www.alifuataslan.com	Yapıldı	Domain bilgisi netleştirildi.
+☑	Site başlığı: FİNANSAL GÜNLÜK	Yapıldı	Marka adı kesinleşti.
+☑	Site kişisel marka ve finans odaklı bir yapı olacak	Yapıldı	Konumlandırma net şekilde belirlendi.
+☑	Eğitim ve analiz platformu kimliğinde olacak	Yapıldı	Temel vizyon tanımlandı.
+☑	Kesinlikle hisse sinyali / al-sat tavsiyesi vermeyecek	Yapıldı	Yasal ve içerik dili açısından önemli karar.
+2. Tasarım ve Görsel Dil
+#	İstenen	Durum	Not
+☑	Beyaz ağırlıklı, ferah, sade ve yazı odaklı tasarım	Yapıldı	Genel UI yönü netleşti.
+☑	Tuncay Turşucu tarzında ama birebir kopya olmayan bir hissiyat	Yapıldı	Referans olarak alındı, özgün yorumlanacak.
+☑	Ana renk: kurumsal lacivert	Yapıldı	Header ve başlıklarda kullanılacak.
+☑	Vurgu rengi: antik altın	Yapıldı	Logo, butonlar ve aktif sekmeler için.
+☑	Gövde metinlerinde antrasit/siyah tonlar	Yapıldı	Okunabilirlik için uygun.
+☐	Header alanında çalışma masası temalı arka plan görseli	Bekliyor	Görsel seçimi / üretimi yapılacak.
+3. Menü ve Site Mimarisi
+#	İstenen	Durum	Not
+☑	Üst menüde 5 ana başlık olacak	Yapıldı	Menü yapısı belirlendi.
+☑	Ana Sayfa	Yapıldı	Temel sayfa.
+☑	Hakkımda	Yapıldı	Kişisel marka bölümü.
+☑	İletişim	Yapıldı	İletişim bilgileri ve sosyal medya alanı.
+☑	Yasal Uyarı	Yapıldı	Sorumluluk reddi için gerekli.
+☑	Eğitimler	Yapıldı	İleride LMS altyapısına evrilecek.
+4. Ana Sayfa İçeriği
+#	İstenen	Durum	Not
+☑	Sağ tarafta 3 veya 4 adet öne çıkan yazı alanı	Yapıldı	Manşet / featured posts alanı olacak.
+☑	Orta alanda son 5 yazının tarih ile listelenmesi	Yapıldı	Ana akış bu yapıda olacak.
+☐	Yazı kartlarının tasarımı	Bekliyor	UI aşamasında şekillenecek.
+☐	Hero alanının nihai düzeni	Bekliyor	İlk taslakta netleştirilecek.
+5. Blog Kategorileri
+#	İstenen	Durum	Not
+☑	Piyasa Yorumları	Yapıldı	Kategori tanımlandı.
+☑	Analiz Okulu	Yapıldı	Kategori tanımlandı.
+☑	Finans Tarihi	Yapıldı	Kategori tanımlandı.
+☑	Yatırım Araçları	Yapıldı	Kategori tanımlandı.
+☑	Bilanço Analizi	Yapıldı	Kategori tanımlandı.
+☑	Strateji &amp; Psikoloji	Yapıldı	Kategori tanımlandı.
+6. Sayfa Bazlı İçerikler
+#	İstenen	Durum	Not
+☑	Hakkımda sayfasında özgeçmiş ve finansal vizyon yer alacak	Yapıldı	Sayfa içeriği tanımlandı.
+☑	İletişim sayfasında e-posta ve sosyal medya bağlantıları olacak	Yapıldı	İletişim alanı belli.
+☑	Yasal Uyarı sayfası profesyonel sorumluluk reddi metni içerecek	Yapıldı	Çok kritik sayfalardan biri.
+☑	Eğitimler sayfası başlangıçta tanıtım sayfası olacak	Yapıldı	İleride LMS’ye dönüşecek yapı.
+7. İletişim ve Sosyal Medya Bilgileri
+#	İstenen	Durum	Not
+☑	E-posta: aslanalifuat1@gmail.com	Yapıldı	İletişim bilgisi net.
+☑	LinkedIn alanı eklenecek	Yapıldı	Link paylaşıldı.
+☑	X (Twitter) için yer ayrılacak	Yapıldı	Şu an aktif değil, placeholder olabilir.
+☐	Instagram linki netleştirilecek	Bekliyor	Şimdilik alan ayrılabilir.
+8. Teknik Beklentiler
+#	İstenen	Durum	Not
+☑	Site hızlı açılacak bir yapıda geliştirilecek	Yapıldı	Next.js / React yönü uygun.
+☑	Mobil uyumlu olacak	Yapıldı	Responsive yapı şart.
+☑	SEO uyumlu olacak	Yapıldı	Blog ve kişisel marka için önemli.
+☑	İleride büyümeye uygun yapı kurulacak	Yapıldı	CMS / LMS / admin panel potansiyeli düşünülüyor.</pre>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = "https://unyboxpdjxtncerbnfim.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVueWJveHBkanh0bmNlcmJuZmltIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNzU4MTcsImV4cCI6MjA5MDk1MTgxN30.DWnsB0jiqBIuHBtx4c3vRoTtQtPOAjBAyefboEkiGWM";
+
+    const bodyEl = document.getElementById("todo-body");
+    const statusEl = document.getElementById("db-status");
+
+    function escapeHtml(value) {
+      return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    function statusClass(status) {
+      const s = String(status || "").toLowerCase();
+      return s === "yapıldı" ? "done" : "todo";
+    }
+
+    function checkboxFor(status) {
+      const s = String(status || "").toLowerCase();
+      return s === "yapıldı" ? "☑" : "☐";
+    }
+
+    async function loadTodos() {
+      try {
+        const response = await fetch(
+          ${SUPABASE_URL}/rest/v1/todo_items?select=section,task,status,owner,note,sort_order&order=sort_order.asc,
+          {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: Bearer 
+            }
+          }
+        );
+
+        if (!response.ok) {
+          throw new Error(HTTP );
+        }
+
+        const rows = await response.json();
+
+        if (!Array.isArray(rows) || rows.length === 0) {
+          bodyEl.innerHTML = '<tr><td colspan="6">Kayıt bulunamadı.</td></tr>';
+          statusEl.textContent = "Supabase bağlantısı başarılı, ancak tablo boş.";
+          return;
+        }
+
+        bodyEl.innerHTML = rows
+          .map((item) => 
+            <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td><span class="status "></span></td>
+              <td></td>
+              <td></td>
+            </tr>
+          )
+          .join("");
+
+        statusEl.textContent = Supabase bağlantısı başarılı.  kayıt yüklendi.;
+      } catch (error) {
+        bodyEl.innerHTML = '<tr><td colspan="6">Veri yüklenemedi.</td></tr>';
+        statusEl.className = "error";
+        statusEl.textContent = Supabase bağlantısı başarısız: ;
+      }
+    }
+
+    loadTodos();
+  </script>
+</body>
+</html>

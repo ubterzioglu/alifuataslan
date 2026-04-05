@@ -8,14 +8,28 @@ import { navItems } from "@/lib/site";
 export function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const previewActive = pathname === "/preview.html";
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#0A1A33]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-        <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
-          <span className="font-[var(--font-serif)] text-lg text-white">Finansal Gunluk</span>
-          <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
-        </Link>
+        <div className="inline-flex items-center gap-3">
+          <Link
+            href="/preview.html"
+            className={`focus-ring hidden rounded-md border px-3 py-1.5 text-xs font-semibold transition sm:inline-flex ${
+              previewActive
+                ? "border-[var(--color-gold)] bg-[#132748] text-[var(--color-gold)]"
+                : "border-slate-500 text-slate-100 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+            }`}
+            onClick={() => setOpen(false)}
+          >
+            Beni oku Ali Fuat!
+          </Link>
+          <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
+            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Gunluk</span>
+            <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
+          </Link>
+        </div>
 
         <nav className="hidden items-center gap-1 md:flex" aria-label="Ana menü">
           {navItems.map((item) => {
@@ -67,6 +81,17 @@ export function Navbar() {
                 </li>
               );
             })}
+            <li>
+              <Link
+                href="/preview.html"
+                onClick={() => setOpen(false)}
+                className={`focus-ring block rounded-md px-3 py-2 text-sm font-medium ${
+                  previewActive ? "bg-[#132748] text-[var(--color-gold)]" : "text-white hover:bg-[#132748]"
+                }`}
+              >
+                Beni oku Ali Fuat!
+              </Link>
+            </li>
           </ul>
         </nav>
       ) : null}
