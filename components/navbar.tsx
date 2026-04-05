@@ -61,9 +61,7 @@ export function Navbar() {
                 : "border-slate-500 text-slate-100 hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             }`}
             onClick={() => setOpen(false)}
-          >
-            Preview
-          </Link>
+          >Beni oku Ali Fuat!</Link>
 
           <button
             type="button"
@@ -104,9 +102,7 @@ export function Navbar() {
                 className={`focus-ring block rounded-md px-3 py-2 text-sm font-medium ${
                   previewActive ? "bg-[#132748] text-[var(--color-gold)]" : "text-white hover:bg-[#132748]"
                 }`}
-              >
-                Preview
-              </Link>
+              >Beni oku Ali Fuat!</Link>
             </li>
           </ul>
         </nav>

@@ -66,6 +66,13 @@ export default function PreviewHtmlPage() {
   const [statusTone, setStatusTone] = useState<StatusTone>("muted");
   const [editingId, setEditingId] = useState<number | null>(null);
   const [draft, setDraft] = useState<DraftTodo | null>(null);
+  const [newDraft, setNewDraft] = useState<DraftTodo>({
+    section: "",
+    task: "",
+    status: "REVISION",
+    owner: "UBT",
+    note: "",
+  });
 
   const statusClassName = useMemo(() => (statusTone === "error" ? styles.error : styles.muted), [statusTone]);
 
@@ -178,6 +185,51 @@ export default function PreviewHtmlPage() {
       setDraft(null);
     }
   }
+  async function createTodo() {
+    const task = newDraft.task.trim();
+    if (!task) {
+      setStatusTone("error");
+      setStatusText("Yeni kayit icin Istenen alani zorunludur.");
+      return;
+    }
+
+    const maxSortOrder = todos.reduce((max, item) => {
+      const current = typeof item.sort_order === "number" ? item.sort_order : 0;
+      return current > max ? current : max;
+    }, 0);
+
+    const payload = {
+      section: newDraft.section.trim() || null,
+      task,
+      status: newDraft.status,
+      owner: newDraft.owner,
+      note: newDraft.note.trim() || null,
+      sort_order: maxSortOrder + 1,
+    };
+
+    const { data, error } = await supabase
+      .from("todo_items")
+      .insert(payload)
+      .select("id,section,task,status,owner,note,sort_order")
+      .single();
+
+    if (error) {
+      setStatusTone("error");
+      setStatusText(`Ekleme hatasi: ${error.message}`);
+      return;
+    }
+
+    setTodos((prev) => [...prev, data as TodoItem]);
+    setNewDraft({
+      section: "",
+      task: "",
+      status: "REVISION",
+      owner: "UBT",
+      note: "",
+    });
+    setStatusTone("muted");
+    setStatusText("Yeni kayit eklendi.");
+  }
 
   return (
     <main className={styles.page}>
@@ -189,6 +241,51 @@ export default function PreviewHtmlPage() {
 
         <section className={styles.section}>
           <h2>Todo Listesi</h2>
+          <div className={styles.addPanel}>
+            <input
+              className={styles.cellInput}
+              placeholder="Bolum"
+              value={newDraft.section}
+              onChange={(e) => setNewDraft((prev) => ({ ...prev, section: e.target.value }))}
+            />
+            <input
+              className={styles.cellInput}
+              placeholder="Istenen"
+              value={newDraft.task}
+              onChange={(e) => setNewDraft((prev) => ({ ...prev, task: e.target.value }))}
+            />
+            <select
+              className={styles.cellSelect}
+              value={newDraft.status}
+              onChange={(e) => setNewDraft((prev) => ({ ...prev, status: e.target.value as TodoStatus }))}
+            >
+              {STATUS_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <select
+              className={styles.cellSelect}
+              value={newDraft.owner}
+              onChange={(e) => setNewDraft((prev) => ({ ...prev, owner: e.target.value as TodoOwner }))}
+            >
+              {OWNER_OPTIONS.map((opt) => (
+                <option key={opt} value={opt}>
+                  {opt}
+                </option>
+              ))}
+            </select>
+            <input
+              className={styles.cellInput}
+              placeholder="Not"
+              value={newDraft.note}
+              onChange={(e) => setNewDraft((prev) => ({ ...prev, note: e.target.value }))}
+            />
+            <button className={`${styles.actionBtn} ${styles.actionSave}`} onClick={() => void createTodo()}>
+              Yeni Ekle
+            </button>
+          </div>
 
           <div className={styles.tableWrap}>
             <table>
