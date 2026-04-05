@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
     default: siteConfig.title,
-    template: "%s | Finansal Gunluk",
+    template: "%s | Finansal Günlük",
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
         url: absoluteUrl("/images/hero-desk.svg"),
         width: 1200,
         height: 630,
-        alt: "Finansal Gunluk",
+        alt: "Finansal Günlük",
       },
     ],
   },

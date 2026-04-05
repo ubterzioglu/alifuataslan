@@ -8,8 +8,8 @@ export async function FeaturedPosts() {
   return (
     <section className="mx-auto max-w-6xl px-4 pb-12 md:pb-16">
       <SectionHeading
-        title="One Cikan Yazilar"
-        description="Manset niteligindeki egitsel analizler ve dikkatle secilmis icerikler."
+        title="Öne Çıkan Yazılar"
+        description="Manşet niteliğindeki eğitsel analizler ve dikkatle seçilmiş içerikler."
       />
       <div className="grid gap-5 md:grid-cols-2">
         {posts.map((post) => (

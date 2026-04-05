@@ -2,9 +2,9 @@
 import { EducationPageContent } from "@/components/education-page-content";
 
 export const metadata: Metadata = {
-  title: "Egitimler",
-  description:
-    "Yakinda yayinlanacak finans egitimleri: temel analiz, teknik analiz, bilanco okuma ve yatirim psikolojisi.",
+  title: "Eğitimler",
+description:
+    "Yakında yayınlanacak finans eğitimleri: temel analiz, teknik analiz, bilanço okuma ve yatırım psikolojisi.",
   alternates: { canonical: "/egitimler" },
 };
 

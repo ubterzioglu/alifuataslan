@@ -2,9 +2,9 @@
 import { ContactCard } from "@/components/contact-card";
 
 export const metadata: Metadata = {
-  title: "Iletisim",
-  description:
-    "Finansal Gunluk ile profesyonel iletisim, is birligi ve konusma daveti talepleri icin iletisim bilgileri.",
+  title: "İletişim",
+description:
+    "Finansal Günlük ile profesyonel iletişim, iş birliği ve konuşma daveti talepleri için iletişim bilgileri.",
   alternates: { canonical: "/iletisim" },
 };
 

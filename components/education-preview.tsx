@@ -6,17 +6,17 @@ export function EducationPreview() {
     <section className="mx-auto max-w-6xl px-4 pb-12 md:pb-16">
       <div className="rounded-2xl border border-[#d9c4a1] bg-gradient-to-r from-[#fffaf2] to-white p-7 md:p-10">
         <SectionHeading
-          title="Egitimler"
-          description="Yakinda burada finansal egitim icerikleri yer alacak. Yapi, gelecekte LMS mimarisine donusecek sekilde planlanmistir."
+          title="Eğitimler"
+          description="Yakında burada finansal eğitim içerikleri yer alacak. Yapı, gelecekte LMS mimarisine dönüşecek şekilde planlanmıştır."
         />
         <div className="grid gap-3 pb-3 sm:grid-cols-2 lg:grid-cols-3">
           {[
             "Temel Analiz",
             "Teknik Analiz",
-            "Bilanco Okuma",
-            "Yatirim Psikolojisi",
+            "Bilanço Okuma",
+            "Yatırım Psikolojisi",
             "Piyasa Tarihi",
-            "Portfoy Disiplini",
+            "Portföy Disiplini",
           ].map((item) => (
             <div key={item} className="rounded-lg border border-[#e8dcc8] bg-white p-4">
               <p className="text-sm font-semibold text-[var(--color-navy)]">{item}</p>
@@ -30,7 +30,7 @@ export function EducationPreview() {
           href="/egitimler"
           className="focus-ring inline-flex rounded-md bg-[var(--color-navy)] px-5 py-3 text-sm font-semibold text-white transition hover:opacity-95"
         >
-          Egitimler Sayfasini Incele
+          Eğitimler Sayfasını İncele
         </Link>
       </div>
     </section>

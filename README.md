@@ -1,6 +1,6 @@
-# Finansal Gunluk
+# Finansal Günlük
 
-`Finansal Gunluk`, Ali Fuat Aslan'in kisisel finans markasi icin tasarlanan modern, hizli ve SEO uyumlu bir Next.js blog altyapisidir.
+`Finansal Günlük`, Ali Fuat Aslan'ın kişisel finans markası için tasarlanan modern, hızlı ve SEO uyumlu bir Next.js blog altyapısıdır.
 
 ## Teknoloji
 
@@ -16,7 +16,7 @@ npm install
 npm run dev
 ```
 
-Uygulama varsayilan olarak `http://localhost:3000` adresinde calisir.
+Uygulama varsayılan olarak `http://localhost:3000` adresinde çalışır.
 
 ## Build
 
@@ -25,10 +25,10 @@ npm run build
 npm run start
 ```
 
-## Klasor Yapisi
+## Klasör Yapısı
 
 - `app/`: Sayfalar, layout, metadata, sitemap, robots
-- `components/`: Reusable UI bilesenleri
+- `components/`: Reusable UI bileşenleri
 - `data/`: Mock blog verisi
-- `lib/`: Site sabitleri, yardimci fonksiyonlar
-- `public/`: Statik varliklar
+- `lib/`: Site sabitleri, yardımcı fonksiyonlar
+- `public/`: Statik varlıklar

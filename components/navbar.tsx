@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import React, { useState } from "react";
 import { navItems } from "@/lib/site";
 
 export function Navbar() {
@@ -14,6 +14,34 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-[#0A1A33]/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
         <div className="inline-flex items-center gap-3">
+          <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
+            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Günlük</span>
+            <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-4">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Ana Menü">
+            {navItems.map((item, i) => {
+              const active = pathname === item.href;
+              return (
+                <React.Fragment key={item.href}>
+                  <Link
+                    href={item.href}
+                    className={`focus-ring rounded-md px-3 py-2 text-sm font-medium transition ${
+                      active
+                        ? "bg-[#132748] text-[var(--color-gold)]"
+                        : "text-slate-100 hover:bg-[#132748] hover:text-white"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                  {i < navItems.length - 1 ? <span className="h-4 w-px bg-[var(--color-gold)]/40" /> : null}
+                </React.Fragment>
+              );
+            })}
+          </nav>
+
           <Link
             href="/preview.html"
             className={`focus-ring hidden rounded-md border px-3 py-1.5 text-xs font-semibold transition sm:inline-flex ${
@@ -25,41 +53,18 @@ export function Navbar() {
           >
             Beni oku Ali Fuat!
           </Link>
-          <Link href="/" className="focus-ring inline-flex items-center gap-2 rounded-sm" onClick={() => setOpen(false)}>
-            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Günlük</span>
-            <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
-          </Link>
+
+          <button
+            type="button"
+            onClick={() => setOpen((prev) => !prev)}
+            className="focus-ring inline-flex rounded-md border border-slate-500 px-3 py-2 text-sm text-white md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label="Menüyü aç veya kapat"
+          >
+            Menu
+          </button>
         </div>
-
-        <nav className="hidden items-center gap-1 md:flex" aria-label="Ana Menü">
-          {navItems.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`focus-ring rounded-md px-3 py-2 text-sm font-medium transition ${
-                  active
-                    ? "bg-[#132748] text-[var(--color-gold)]"
-                    : "text-slate-100 hover:bg-[#132748] hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
-        </nav>
-
-        <button
-          type="button"
-          onClick={() => setOpen((prev) => !prev)}
-          className="focus-ring inline-flex rounded-md border border-slate-500 px-3 py-2 text-sm text-white md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label="Menüyü aç veya kapat"
-        >
-          Menu
-        </button>
       </div>
 
       {open ? (

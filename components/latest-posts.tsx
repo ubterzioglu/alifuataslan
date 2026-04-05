@@ -8,10 +8,10 @@ export async function LatestPosts() {
   return (
     <section id="son-yazilar" className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-12 md:pb-16">
       <SectionHeading
-        title="Son Yazilar"
-        description="Kronolojik sirada yayinlanan guncel icerikler."
+        title="Son Yazılar"
+        description="Kronolojik sırada yayınlanan güncel içerikler."
         href="/yazilar"
-        actionLabel="Tum Yazilar"
+        actionLabel="Tüm Yazılar"
       />
       <div className="grid gap-5">
         {posts.map((post) => (

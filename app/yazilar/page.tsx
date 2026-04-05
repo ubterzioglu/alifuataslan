@@ -6,9 +6,9 @@ import { PostCard } from "@/components/post-card";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Yazilar",
+  title: "Yazılar",
   description:
-    "Piyasa yorumlari, finans tarihi, bilanco analizi ve yatirim psikolojisi odakli egitsel blog yazilari.",
+    "Piyasa yorumları, finans tarihi, bilanço analizi ve yatırım psikolojisi odaklı eğitsel blog yazıları.",
   alternates: { canonical: "/yazilar" },
 };
 
@@ -18,8 +18,8 @@ export default async function BlogListPage() {
   return (
     <section className="mx-auto max-w-6xl px-4 py-12 md:py-16">
       <SectionHeading
-        title="Tum Yazilar"
-        description="Finansal okuryazarlik, analiz metodolojisi ve piyasa tarihi ekseninde yayinlanan icerikler."
+        title="Tüm Yazılar"
+        description="Finansal okuryazarlık, analiz metodolojisi ve piyasa tarihi ekseninde yayınlanan içerikler."
       />
       <div className="grid gap-5">
         {orderedPosts.map((post) => (
