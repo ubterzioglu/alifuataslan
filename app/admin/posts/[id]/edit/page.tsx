@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 export default async function EditPostPage({ params }: EditPostPageProps) {
   const { id } = params;
   const post = await getPostById(Number(id));
-  
+
   if (!post) {
     notFound();
   }
