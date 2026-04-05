@@ -56,7 +56,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       />
       <div className="grid gap-5">
         {posts.length === 0 ? (
-          <p className="text-center text-slate-500">Bu kategoride henuuz yazı bulunmamadi.</p>
+          <p className="text-center text-slate-500">Bu kategoride henuuz yaz1 bulunmamadi.</p>
         ) : (
           posts.map((post) => <PostCard key={post.slug} post={post} />)
         )}

@@ -1,10 +1,10 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { LegalNoticeSection } from "@/components/legal-notice-section";
 
 export const metadata: Metadata = {
-  title: "Yasal Uyari",
+  title: "Yasal Uyarı",
   description:
-    "Sitedeki iceriklerin yatirim tavsiyesi niteliginde olmadigina dair yasal bilgilendirme metni.",
+    "Sitedeki içeriklerin yatırım tavsiyesi niteliğinde olmadığına dair yasal bilgilendirme metni.",
   alternates: { canonical: "/yasal-uyari" },
 };
 

@@ -64,11 +64,11 @@ export default async function PostDetailPage({ params }: PostPageProps) {
         {post.excerpt && <p className="mt-4 text-base leading-8 text-[var(--color-slate)]">{post.excerpt}</p>}
         <div className="mt-5 flex flex-wrap items-center gap-3 text-xs text-slate-500">
           <time dateTime={post.published_at || post.created_at}>{formatDate(post.published_at || post.created_at)}</time>
-          <span aria-hidden="true">•</span>
+          <span aria-hidden="true">"</span>
           <span>{post.author_name}</span>
           {post.reading_time && (
             <>
-              <span aria-hidden="true">•</span>
+              <span aria-hidden="true">"</span>
               <span>{post.reading_time}</span>
             </>
           )}

@@ -1,28 +1,28 @@
-﻿export function LegalNoticeSection() {
+export function LegalNoticeSection() {
   return (
     <section className="mx-auto max-w-4xl px-4 py-12 md:py-16">
       <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
-        <h1 className="font-[var(--font-serif)] text-3xl text-[var(--color-navy)] md:text-4xl">Yasal Uyari</h1>
+        <h1 className="font-[var(--font-serif)] text-3xl text-[var(--color-navy)] md:text-4xl">Yasal Uyarı</h1>
         <p className="mt-4 rounded-lg border border-[#e7d8bf] bg-[#fbf7ef] p-4 text-sm leading-7 text-[var(--color-navy)]">
-          Bu platformda yer alan tum icerikler egitim ve genel bilgilendirme amaciyla sunulmaktadir. Herhangi bir yatirim tavsiyesi, alim-satim onerisi veya portfoy yonetimi hizmeti niteliginde degildir.
+          Bu platformda yer alan tüm içerikler eğitim ve genel bilgilendirme amacıyla sunulmaktadır. Herhangi bir yatırım tavsiyesi, alım-satım önerisi veya portföy yönetimi hizmeti niteliğinde değildir.
         </p>
 
         <div className="prose-content mt-6 text-[15px] text-[var(--color-slate)]">
-          <h2 className="font-[var(--font-serif)] text-2xl">Kapsam ve Sorumluluk Siniri</h2>
+          <h2 className="font-[var(--font-serif)] text-2xl">Kapsam ve Sorumluluk Sınırı</h2>
           <p>
-            Iceriklerde yer alan analizler, finansal okuryazarligi desteklemek amaciyla hazirlanir. Yatirim kararlarinin tum hukuki ve mali sorumlulugu, karari veren kisilere aittir.
+            İçeriklerde yer alan analizler, finansal okuryazarlığı desteklemek amacıyla hazırlanır. Yatırım kararlarının tüm hukuki ve mali sorumluluğu, kararı veren kişilere aittir.
           </p>
 
-          <h2 className="font-[var(--font-serif)] text-2xl">Yatirim Tavsiyesi Olmama Beyani</h2>
+          <h2 className="font-[var(--font-serif)] text-2xl">Yatırım Tavsiyesi Olmama Beyanı</h2>
           <ul className="mt-3 list-disc space-y-2 pl-6">
-            <li>Icerikler, kisiye ozel risk-getiri profili dikkate alinarak hazirlanmaz.</li>
-            <li>Belirli bir sermaye piyasasi aracina yonelik al-sat yonlendirmesi icermez.</li>
-            <li>Paylasimlar, profesyonel yatirim danismanligi hizmetinin yerine gecmez.</li>
+            <li>İçerikler, kişiye özel risk-getiri profili dikkate alınarak hazırlanmaz.</li>
+            <li>Belirli bir sermaye piyasası aracına yönelik al-sat yönlendirmesi içermez.</li>
+            <li>Paylaşımlar, profesyonel yatırım danışmanlığı hizmetinin yerine geçmez.</li>
           </ul>
 
-          <h2 className="font-[var(--font-serif)] text-2xl">Veri ve Guncellik</h2>
+          <h2 className="font-[var(--font-serif)] text-2xl">Veri ve Güncellik</h2>
           <p>
-            Finansal veriler zamanla degisebilir. Bu nedenle iceriklerin yayin tarihini ve guncel kosullari dikkate alarak degerlendirme yapilmasi onerilir.
+            Finansal veriler zamanla değişebilir. Bu nedenle içeriklerin yayın tarihini ve güncel koşulları dikkate alarak değerlendirme yapılması önerilir.
           </p>
         </div>
       </div>

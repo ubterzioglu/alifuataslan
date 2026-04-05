@@ -19,20 +19,20 @@ export function Navbar() {
             <span className="inline-flex h-11 w-11 overflow-hidden rounded-full border border-white/35 bg-white shadow-[0_6px_14px_rgba(0,0,0,0.28)]">
               <Image
                 src="/images/logo.png"
-                alt="Finansal GÃ¼nlÃ¼k logo"
+                alt={"Finansal G\u00fcnl\u00fck logo"}
                 width={44}
                 height={44}
                 className="h-full w-full object-cover"
                 priority
               />
             </span>
-            <span className="font-[var(--font-serif)] text-lg text-white">Finansal GÃ¼nlÃ¼k</span>
+            <span className="font-[var(--font-serif)] text-lg text-white">{"Finansal G\u00fcnl\u00fck"}</span>
             <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
           </Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Ana MenÃ¼">
+          <nav className="hidden items-center gap-1 md:flex" aria-label={"Ana Men\u00fc"}>
             {navItems.map((item, i) => {
               const active = pathname === item.href;
               return (
@@ -71,7 +71,7 @@ export function Navbar() {
             className="focus-ring inline-flex rounded-md border border-slate-500 px-3 py-2 text-sm text-white md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label="MenÃ¼yÃ¼ aÃ§ veya kapat"
+            aria-label={"Men\u00fcy\u00fc a\u00e7 veya kapat"}
           >
             Menu
           </button>
@@ -79,7 +79,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label="Mobil MenÃ¼">
+        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label={"Mobil Men\u00fc"}>
           <ul className="space-y-2">
             {navItems.map((item) => {
               const active = pathname === item.href;

@@ -1,4 +1,4 @@
-﻿import { AboutPreview } from "@/components/about-preview";
+import { AboutPreview } from "@/components/about-preview";
 import { CategoryGrid } from "@/components/category-grid";
 import { EducationPreview } from "@/components/education-preview";
 import { FeaturedPosts } from "@/components/featured-posts";

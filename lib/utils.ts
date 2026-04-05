@@ -1,4 +1,4 @@
-﻿export function formatDate(dateString: string): string {
+export function formatDate(dateString: string): string {
   return new Intl.DateTimeFormat("tr-TR", {
     day: "2-digit",
     month: "long",
