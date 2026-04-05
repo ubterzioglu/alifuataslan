@@ -244,3 +244,8 @@
   margin: 0;
   white-space: pre-wrap;
 }
+
+.iconOnly {
+  width: 32px;
+  padding: 0;
+}

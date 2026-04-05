@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import styles from "./preview.module.css";
+import { Pencil, Trash2 } from "lucide-react";
 
 type TodoStatus = "DONE" | "REVISION" | "ON HOLD";
 type TodoOwner = "UBT" | "AFA";
@@ -32,39 +33,39 @@ const OWNER_OPTIONS: TodoOwner[] = ["UBT", "AFA"];
 
 const sourceMessage = `Baris bey merhabalar
 Alan Adi: www.alifuataslan.com
-Site Basligi: FINANSAL GÜNLÜK
+Site Basligi: FINANSAL GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œNLÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œK
 1. PROJENIN AMACI VE VIZYONU
-Kisisel markami (Ali Fuat Aslan) finans camiasinda konumlandirmak; borsa, piyasa analizleri, finans tarihi ve yatirim araçlari üzerine bilgilendirici içerikler paylasmak. Site bir "Egitim ve Analiz Platformu" kimliginde olacak, kesinlikle hisse sinyali veya al-sat tavsiyesi vermeyecektir.
-2. GÖRSEL TASARIM VE RENK PALETI
-• Konsept: Tuncay Tursucu (https://tuncaytursucu.com/) tarzinda beyaz agirlikli, ferah, sade ve yazi odakli bir yapi.
-• Ana Renk: Kurumsal Lacivert (Header arka plani ve ana basliklar için).
-• Vurgu Rengi: Antik Altin) (Logo, butonlar ve aktif sekmeler için).
-• Yazi Renkleri: Gövde metinlerinde Antrasit/Siyah arka planda Saf Beyaz
-• Header Görseli: Üst kisimda Finansal Günlük diye yazinin olacagi kisimda; sik bir çalisma masasini simgeleyen (fincan, kitap, kalem içeren) profesyonel ve hafif bulanik bir arka plan görseli kullanilacaktir.
-3. SITE MIMARISI VE MENÜ YAPISI
-Üst menü (Navigation Bar) su 5 ana basliktan olusacaktir:
+Kisisel markami (Ali Fuat Aslan) finans camiasinda konumlandirmak; borsa, piyasa analizleri, finans tarihi ve yatirim araÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§lari ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼zerine bilgilendirici iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§erikler paylasmak. Site bir "Egitim ve Analiz Platformu" kimliginde olacak, kesinlikle hisse sinyali veya al-sat tavsiyesi vermeyecektir.
+2. GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œRSEL TASARIM VE RENK PALETI
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Konsept: Tuncay Tursucu (https://tuncaytursucu.com/) tarzinda beyaz agirlikli, ferah, sade ve yazi odakli bir yapi.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Ana Renk: Kurumsal Lacivert (Header arka plani ve ana basliklar iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§in).
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Vurgu Rengi: Antik Altin) (Logo, butonlar ve aktif sekmeler iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§in).
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Yazi Renkleri: GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶vde metinlerinde Antrasit/Siyah arka planda Saf Beyaz
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Header GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶rseli: ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œst kisimda Finansal GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼nlÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼k diye yazinin olacagi kisimda; sik bir ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§alisma masasini simgeleyen (fincan, kitap, kalem iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§eren) profesyonel ve hafif bulanik bir arka plan gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶rseli kullanilacaktir.
+3. SITE MIMARISI VE MENÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ YAPISI
+ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œst menÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ (Navigation Bar) su 5 ana basliktan olusacaktir:
 1. Ana Sayfa: Son analizlerin ve yazilarin kronolojik akisi.
-2. Hakkimda: Özgeçmis, finansal vizyon ve yatirim bakis açisi.
+2. Hakkimda: ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œzgeÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§mis, finansal vizyon ve yatirim bakis aÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§isi.
 3. Iletisim: E-posta adresi ve sosyal medya (X, LinkedIn, Instagram) linkleri.
-4. Yasal Uyari: Tuncay Tursucu’nun "Uyari" sayfasi referans alinarak hazirlanan, sorumluluk reddi metni.
-5. Egitimler: Baslangiçta tanitim sayfasi, ileride "LMS" (Egitim Yönetim Sistemi) altyapisina dönüstürülecek alan.
-6. ÖNE ÇIKAN YAZILAR (MANSET ALANI) sayfanin sag kisminda belirtilebilir 3 veya 4 adet yazinin paylasilmasi
+4. Yasal Uyari: Tuncay TursucuÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢nun "Uyari" sayfasi referans alinarak hazirlanan, sorumluluk reddi metni.
+5. Egitimler: BaslangiÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ta tanitim sayfasi, ileride "LMS" (Egitim YÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶netim Sistemi) altyapisina dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼stÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼rÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼lecek alan.
+6. ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œNE ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡IKAN YAZILAR (MANSET ALANI) sayfanin sag kisminda belirtilebilir 3 veya 4 adet yazinin paylasilmasi
 7. SON YAZILAR (ANA AKIS) sitenin orta kisminda tarih belirtilerek son 5 yazinin paylasilmasi
-4. IÇERIK KATEGORILERI (BLOG YAPISI)
+4. IÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¡ERIK KATEGORILERI (BLOG YAPISI)
 Yazilar asagidaki etiket/kategori sistemiyle tasnif edilecektir:
-• Piyasa Yorumlari: Borsa ve güncel makro bakis.
-• Analiz Okulu: Teknik ve temel analiz egitim yazilari.
-• Finans Tarihi: Geçmis krizler ve piyasa olaylarinin analizi.
-• Yatirim Araçlari: Borsa, Fon, Bono, Eurobond ve BES üzerine rehber içerikler.
-• Bilanço Analizi: Sirket finansallarinin yorumlanmasi.
-• Strateji & Psikoloji: Yatirimci disiplini ve portföy yönetimi.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Piyasa Yorumlari: Borsa ve gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ncel makro bakis.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Analiz Okulu: Teknik ve temel analiz egitim yazilari.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Finans Tarihi: GeÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§mis krizler ve piyasa olaylarinin analizi.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Yatirim AraÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§lari: Borsa, Fon, Bono, Eurobond ve BES ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼zerine rehber iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§erikler.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ BilanÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§o Analizi: Sirket finansallarinin yorumlanmasi.
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Strateji & Psikoloji: Yatirimci disiplini ve portfÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶y yÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶netimi.
 
 5. ILETISIM VE SOSYAL MEDYA BILGILERI
-• E-posta: aslanalifuat1@gmail.com
-• LinkedIn: https://www.linkedin.com/in/ali-fuat-aslan-00459229a/
-• Diger Sosyal Medyalar: X (Twitter) ikonu için yer ayrilmalidir. Su an da kullanmamaktayim ama bir hesap açacagim
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ E-posta: aslanalifuat1@gmail.com
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ LinkedIn: https://www.linkedin.com/in/ali-fuat-aslan-00459229a/
+ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¢ Diger Sosyal Medyalar: X (Twitter) ikonu iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§in yer ayrilmalidir. Su an da kullanmamaktayim ama bir hesap aÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§acagim
 
-Pazartesi günü üzerinde konusacagimiz web sitesi için Içerigi mümkün oldugunca düzenli bir sekilde toparlamaya çalistim; ancak teknik dokunuslar, tasarim ayarlamalari ve profesyonel yorumlar konusunda isin ehli olarak sizin tecrübenize güveniyorum. Konseptin bu taslakla birlikte zihninizde net bir sekilde canlanacagini umuyorum. Pazartesi günü detaylari netlestirmek üzere görüsmek dilegiyle.
+Pazartesi gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼zerinde konusacagimiz web sitesi iÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§in IÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§erigi mÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼mkÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼n oldugunca dÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼zenli bir sekilde toparlamaya ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§alistim; ancak teknik dokunuslar, tasarim ayarlamalari ve profesyonel yorumlar konusunda isin ehli olarak sizin tecrÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼benize gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼veniyorum. Konseptin bu taslakla birlikte zihninizde net bir sekilde canlanacagini umuyorum. Pazartesi gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼nÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ detaylari netlestirmek ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼zere gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶rÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼smek dilegiyle.
 Simdiden elinize saglik`;
 
 function normalizeStatus(status: string | null | undefined): TodoStatus {
@@ -125,7 +126,7 @@ export default function PreviewHtmlPage() {
     if (rows.length === 0) {
       setStatusText("Supabase baglantisi basarili, ancak tablo bos.");
     } else {
-      setStatusText(`Supabase baglantisi basarili. ${rows.length} kayit yüklendi.`);
+      setStatusText(`Supabase baglantisi basarili. ${rows.length} kayit yÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼klendi.`);
     }
 
     setLoading(false);
@@ -178,7 +179,7 @@ export default function PreviewHtmlPage() {
 
     if (error) {
       setStatusTone("error");
-      setStatusText(`Güncelleme hatasi: ${error.message}`);
+      setStatusText(`GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ncelleme hatasi: ${error.message}`);
       return;
     }
 
@@ -187,7 +188,7 @@ export default function PreviewHtmlPage() {
     setEditingId(null);
     setDraft(null);
     setStatusTone("muted");
-    setStatusText("Kayit güncellendi.");
+    setStatusText("Kayit gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ncellendi.");
   }
 
   async function deleteRow(id: number) {
@@ -216,8 +217,8 @@ export default function PreviewHtmlPage() {
     <main className={styles.page}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h1>FINANSAL GÜNLÜK</h1>
-          <p>Todo listesi durum güncellemesi</p>
+          <h1>FINANSAL GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œNLÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Â¦ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œK</h1>
+          <p>Todo listesi durum gÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ncellemesi</p>
         </div>
 
         <section className={styles.section}>
@@ -227,7 +228,7 @@ export default function PreviewHtmlPage() {
             <table>
               <thead>
                 <tr>
-                  <th className={styles.wSection}>Bölüm</th>
+                  <th className={styles.wSection}>BÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶lÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼m</th>
                   <th className={styles.wTask}>Istenen</th>
                   <th className={styles.wStatus}>Durum</th>
                   <th className={styles.wOwner}>Kim yapacak?</th>
@@ -238,7 +239,7 @@ export default function PreviewHtmlPage() {
               <tbody>
                 {loading ? (
                   <tr>
-                    <td colSpan={6}>Yükleniyor...</td>
+                    <td colSpan={6}>YÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼kleniyor...</td>
                   </tr>
                 ) : todos.length === 0 ? (
                   <tr>
@@ -339,11 +340,11 @@ export default function PreviewHtmlPage() {
                         <td>{item.owner || "UBT"}</td>
                         <td>{item.note || "-"}</td>
                         <td>
-                          <button className={`${styles.actionBtn} ${styles.actionEdit}`} onClick={() => startEdit(item)}>
-                            Düzenle
+                          <button className={`${styles.actionBtn} ${styles.actionEdit} ${styles.iconOnly}`} onClick={() => startEdit(item)} title={"D\u00fczenle"} aria-label={"D\u00fczenle"}>
+                            <Pencil size={14} />
                           </button>
-                          <button className={`${styles.actionBtn} ${styles.actionDelete}`} onClick={() => void deleteRow(item.id)}>
-                            Sil
+                          <button className={`${styles.actionBtn} ${styles.actionDelete} ${styles.iconOnly}`} onClick={() => void deleteRow(item.id)} title="Sil" aria-label="Sil">
+                            <Trash2 size={14} />
                           </button>
                         </td>
                       </tr>
@@ -361,7 +362,7 @@ export default function PreviewHtmlPage() {
           <h2>Kaynak Mesaj</h2>
           <p className={styles.sourceNote}>Istenenler bu mesaj kaynak alinarak belirlenmistir.</p>
           <details className={styles.accordion}>
-            <summary>Kaynak Mesaji Görüntüle</summary>
+            <summary>Kaynak Mesaji GÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¶rÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼ntÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¼le</summary>
             <div className={styles.accordionContent}>
               <pre className={styles.rawMessage}>{sourceMessage}</pre>
             </div>

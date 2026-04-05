@@ -19,20 +19,20 @@ export function Navbar() {
             <span className="inline-flex h-11 w-11 overflow-hidden rounded-full border border-white/35 bg-white shadow-[0_6px_14px_rgba(0,0,0,0.28)]">
               <Image
                 src="/images/logo.png"
-                alt="Finansal Günlük logo"
+                alt="Finansal GÃ¼nlÃ¼k logo"
                 width={44}
                 height={44}
                 className="h-full w-full object-cover"
                 priority
               />
             </span>
-            <span className="font-[var(--font-serif)] text-lg text-white">Finansal Günlük</span>
+            <span className="font-[var(--font-serif)] text-lg text-white">Finansal GÃ¼nlÃ¼k</span>
             <span className="h-5 w-px bg-[var(--color-gold)]" aria-hidden="true" />
           </Link>
         </div>
 
         <div className="flex items-center gap-4">
-          <nav className="hidden items-center gap-1 md:flex" aria-label="Ana Menü">
+          <nav className="hidden items-center gap-1 md:flex" aria-label="Ana MenÃ¼">
             {navItems.map((item, i) => {
               const active = pathname === item.href;
               return (
@@ -62,7 +62,7 @@ export function Navbar() {
             }`}
             onClick={() => setOpen(false)}
           >
-            Beni oku Ali Fuat!
+            Preview
           </Link>
 
           <button
@@ -71,7 +71,7 @@ export function Navbar() {
             className="focus-ring inline-flex rounded-md border border-slate-500 px-3 py-2 text-sm text-white md:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
-            aria-label="Menüyü aç veya kapat"
+            aria-label="MenÃ¼yÃ¼ aÃ§ veya kapat"
           >
             Menu
           </button>
@@ -79,7 +79,7 @@ export function Navbar() {
       </div>
 
       {open ? (
-        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label="Mobil Menü">
+        <nav id="mobile-nav" className="border-t border-slate-700 bg-[#0A1A33] px-4 py-3 md:hidden" aria-label="Mobil MenÃ¼">
           <ul className="space-y-2">
             {navItems.map((item) => {
               const active = pathname === item.href;
@@ -105,7 +105,7 @@ export function Navbar() {
                   previewActive ? "bg-[#132748] text-[var(--color-gold)]" : "text-white hover:bg-[#132748]"
                 }`}
               >
-                Beni oku Ali Fuat!
+                Preview
               </Link>
             </li>
           </ul>
