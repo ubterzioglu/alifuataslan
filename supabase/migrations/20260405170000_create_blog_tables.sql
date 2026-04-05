@@ -121,7 +121,7 @@ on conflict (slug) do nothing;
 
 insert into public.posts (title, slug, excerpt, content, featured_image_url, status, featured, category_id, author_name, published_at, reading_time, seo_title, seo_description, disclaimer_enabled)
 select
-  p.title, p.slug, p.excerpt, p.content, p.featured_image_url, p.status, p.featured, c.id, p.author_name, p.published_at, p.reading_time, p.seo_title, p.seo_description, p.disclaimer_enabled
+  p.title, p.slug, p.excerpt, p.content, p.featured_image_url, p.status, p.featured, c.id, p.author_name, p.published_at::timestamptz, p.reading_time, p.seo_title, p.seo_description, p.disclaimer_enabled
 from (
   values
     ('Piyasalarda Belirsizlik Donemlerinde Yatirimci Psikolojisi', 'belirsizlik-donemlerinde-yatirimci-psikolojisi',
